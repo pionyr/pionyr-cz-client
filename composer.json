@@ -1,0 +1,27 @@
+{
+    "name": "pionyr/pionyr-cz-client",
+    "description": "PHP API Client for API provided by Pionyr.cz",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ondřej Machulda",
+            "email": "ondrej.machulda@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pionyr\\PionyrCz\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pionyr\\PionyrCz\\": "tests/unit/",
+            "Pionyr\\PionyrCz\\IntegrationTests\\": "tests/integration/"
+        }
+    },
+    "require": {},
+    "config": {
+        "sort-packages": true
+    }
+}
