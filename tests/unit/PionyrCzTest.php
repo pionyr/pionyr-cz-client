@@ -2,12 +2,10 @@
 
 namespace Pionyr\PionyrCz;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * @covers \Pionyr\PionyrCz\PionyrCz
  */
-class PionyrCzTest extends TestCase
+class PionyrCzTest extends UnitTestCase
 {
     /** @test */
     public function shouldBeInstantiable(): void

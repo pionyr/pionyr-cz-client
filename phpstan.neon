@@ -1,2 +1,5 @@
 includes:
 	- vendor/phpstan/phpstan-phpunit/extension.neon
+parameters:
+	ignoreErrors:
+		- '#Cannot call method getUri\(\) on false|Psr\\Http\\Message\\RequestInterface#'
