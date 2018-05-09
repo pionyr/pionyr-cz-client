@@ -22,10 +22,11 @@ Na začátku práce s API je třeba nejprve vytvořit instanci objektu `PionyrCz
 $pionyrCz = new PionyrCz('my-api-token');
 ```
 
-Pokud chceme pracovat s jinou instancí API než "produkční" na pionyr.cz, můžeme předat jako druhý parametr URL API:
+Pokud chceme pracovat s jinou instancí API než "produkční" na pionyr.cz, můžeme nastavit tzv. base URL API:
 
 ```php
-$pionyrCz = new PionyrCz('my-api-test-token', 'http://staging.pionyr.cz/api/');
+$pionyrCz = new PionyrCz('my-api-test-token');
+$pionyrCz->setBaseUrl('http://staging.pionyr.cz/api/');
 ```
 
 V dalších ukázkách se pracuje s tímto objektem `$pionyrCz`.
