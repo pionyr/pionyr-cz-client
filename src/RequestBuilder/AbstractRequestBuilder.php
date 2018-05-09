@@ -4,7 +4,7 @@ namespace Pionyr\PionyrCz\RequestBuilder;
 
 use Fig\Http\Message\RequestMethodInterface;
 use Pionyr\PionyrCz\Http\RequestManager;
-use Psr\Http\Message\ResponseInterface;
+use Pionyr\PionyrCz\Http\Response\ResponseInterface;
 
 abstract class AbstractRequestBuilder
 {
@@ -16,14 +16,17 @@ abstract class AbstractRequestBuilder
         $this->requestManager = $requestManager;
     }
 
-    abstract protected function getPath(): string;
-
     public function send(): ResponseInterface
     {
-        // TODO: serialize to value object
-        return $this->requestManager->sendRequest(
+        $response = $this->requestManager->sendRequest(
             RequestMethodInterface::METHOD_GET,
             $this->getPath()
         );
+
+        return $this->processResponse($response);
     }
+
+    abstract protected function getPath(): string;
+
+    abstract protected function processResponse(\Psr\Http\Message\ResponseInterface $httpResponse): ResponseInterface;
 }

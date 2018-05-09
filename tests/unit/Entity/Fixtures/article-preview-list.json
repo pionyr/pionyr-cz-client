@@ -1,0 +1,24 @@
+{
+  "635124ec-3d05-447d-acc4-2a87d7a711a3": {
+    "guid": "635124ec-3d05-447d-acc4-2a87d7a711a3",
+    "nazev": "aktualita",
+    "datumPublikovani": "2018-04-27 00:00:00",
+    "kategorie": "Akce a soutěže",
+    "kategorieId": 1,
+    "autorJmeno": "John",
+    "autorPrijmeni": "Doe",
+    "perexUrl": null,
+    "perex": "<p>aktualita</p>"
+  },
+  "04840dab-2dc6-11e8-9fb0-00155dfe3279": {
+    "guid": "04840dab-2dc6-11e8-9fb0-00155dfe3279",
+    "nazev": "Dračí smyčka 2018",
+    "datumPublikovani": "2018-02-15 00:00:00",
+    "kategorie": "Akce a soutěže",
+    "kategorieId": 1,
+    "autorJmeno": "Jana",
+    "autorPrijmeni": "Nováková",
+    "perexUrl": "https//pionyr.cz/cf7d1a74-8f71-4e42-a5b8-0ef4049a9412.jpg",
+    "perex": "<p>V sobotu 24. února se uskuteční již tradiční akce brněnských pionýrů s příhodným názvem Dračí smyčka.</p>"
+  }
+}

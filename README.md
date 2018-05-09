@@ -47,7 +47,7 @@ $response = $pionyrCz->request()
     ->send();
 
 echo $response->getPageCount(); // vypíše celkový počet stránek které daný seznam obsahuje
-echo $response->getItemCount(); // vypíše celkový počet položek (na všech stránkách) které daný seznam obsahuje
+echo $response->getItemTotalCount(); // vypíše celkový počet položek (na všech stránkách) které daný seznam obsahuje
 
 foreach ($response->getData() as $article) {
     echo $article->getUuid();           // jedinečné ID článku (UUID)

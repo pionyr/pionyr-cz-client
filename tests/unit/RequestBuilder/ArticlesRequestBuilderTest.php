@@ -20,7 +20,9 @@ class ArticlesRequestBuilderTest extends TestCase
         $requestManagerMock->expects($this->once())
             ->method('sendRequest')
             ->with(RequestMethodInterface::METHOD_GET, '/clanky/')
-            ->willReturn(new Response());
+            ->willReturn(
+                new Response(200, [], file_get_contents(__DIR__ . '/../Http/Fixtures/articles-response.json'))
+            );
 
         $builder = new ArticlesRequestBuilder($requestManagerMock);
 

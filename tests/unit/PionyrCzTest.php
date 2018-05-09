@@ -2,8 +2,8 @@
 
 namespace Pionyr\PionyrCz;
 
-use GuzzleHttp\Psr7\Response;
 use Http\Mock\Client;
+use Pionyr\PionyrCz\Http\Response\ResponseInterface;
 
 /**
  * @covers \Pionyr\PionyrCz\PionyrCz
@@ -37,7 +37,7 @@ class PionyrCzTest extends UnitTestCase
             $mockClient->getRequests()[0]->getUri()->__toString()
         );
 
-        $this->assertInstanceOf(Response::class, $response);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
     }
 
     /** @test */

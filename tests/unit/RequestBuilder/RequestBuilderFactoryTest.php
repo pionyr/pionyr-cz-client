@@ -6,6 +6,7 @@ use Fig\Http\Message\RequestMethodInterface;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Pionyr\PionyrCz\Http\RequestManager;
+use Pionyr\PionyrCz\Http\Response\ArticlesResponse;
 
 /**
  * @covers \Pionyr\PionyrCz\RequestBuilder\RequestBuilderFactory
@@ -18,13 +19,16 @@ class RequestBuilderFactoryTest extends TestCase
      */
     public function shouldInstantiateBuilderAndSendRequest(
         string $factoryMethod,
-        string $expectedBuilderClass
+        string $expectedBuilderClass,
+        string $expectedResponseClass
     ): void {
         $requestManagerMock = $this->createMock(RequestManager::class);
         $requestManagerMock->expects($this->once())
             ->method('sendRequest')
             ->with(RequestMethodInterface::METHOD_GET, $this->isType('string'))
-            ->willReturn(new Response());
+            ->willReturn(
+                new Response(200, [], file_get_contents(__DIR__ . '/../Http/Fixtures/articles-response.json'))
+            );
 
         $factory = new RequestBuilderFactory($requestManagerMock);
 
@@ -33,7 +37,7 @@ class RequestBuilderFactoryTest extends TestCase
 
         $this->assertInstanceOf($expectedBuilderClass, $builder);
 
-        $this->assertInstanceOf(Response::class, $builder->send());
+        $this->assertInstanceOf($expectedResponseClass, $builder->send());
     }
 
     /**
@@ -42,7 +46,7 @@ class RequestBuilderFactoryTest extends TestCase
     public function provideBuilderMethods(): array
     {
         return [
-            ['articles', ArticlesRequestBuilder::class],
+            ['articles', ArticlesRequestBuilder::class, ArticlesResponse::class],
         ];
     }
 }
