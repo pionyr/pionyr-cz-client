@@ -4,3 +4,4 @@ imports:
 services:
     PhpCsFixer\Fixer\PhpUnit\PhpUnitTestAnnotationFixer:
         style: annotation
+    PhpCsFixer\Fixer\PhpUnit\PhpUnitTestClassRequiresCoversFixer: ~

@@ -7,6 +7,9 @@ use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Pionyr\PionyrCz\Http\RequestManager;
 
+/**
+ * @covers \Pionyr\PionyrCz\RequestBuilder\RequestBuilderFactory
+ */
 class RequestBuilderFactoryTest extends TestCase
 {
     /**

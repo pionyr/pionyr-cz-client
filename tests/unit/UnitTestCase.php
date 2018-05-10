@@ -6,6 +6,9 @@ use Fig\Http\Message\StatusCodeInterface;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * @coversNothing
+ */
 class UnitTestCase extends \PHPUnit\Framework\TestCase
 {
     protected function createJsonResponseFromFile(string $fileName): ResponseInterface
