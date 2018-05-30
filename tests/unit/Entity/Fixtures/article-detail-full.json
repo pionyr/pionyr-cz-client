@@ -1,0 +1,62 @@
+{
+  "guid": "04840dab-2dc6-11e8-9fb0-00155dfe3280",
+  "datumPublikovani": "2018-02-15 13:33:36",
+  "nazev": "Dračí smyčka 2018",
+  "perex": "<p>V sobotu 24. února se uskuteční tradiční akce brněnských pionýrů</p>",
+  "text": "<p>Úkolem závodníků nejrůznějších věkových kategorií je uvázat určené uzly.</p>",
+  "autorJmeno": "John",
+  "autorPrijmeni": "Doe",
+  "perexUrl": "http://photo.url/goo.jpg",
+  "textUrl": "http://photo.url/gooText.jpg",
+  "datumZobrazitOd": "2018-02-01 01:02:03",
+  "datumZobrazitDo": "2018-06-30 04:05:06",
+  "jeAktualita": true,
+  "jeProClenyVerejna": true,
+  "jeProClenyNeverejna": true,
+  "jeMujKrajskyWeb": true,
+  "jeMozaika": true,
+  "jeNabidnutDalsim": true,
+  "jePOP": true,
+  "jeSKOP": false,
+  "jeJcKOP": false,
+  "jePlKOP": false,
+  "jeKOPKvK": false,
+  "jeUKOP": false,
+  "jeLKOP": true,
+  "jeKOKhK": false,
+  "jePaKOP": false,
+  "jeKOKV": false,
+  "jeJmKOP": false,
+  "jeOZKOP": false,
+  "jeMKOP": false,
+  "kategorie": "Ostatní",
+  "kategorieId": 6,
+  "fotografie": [
+    {
+      "url": "http://staging.pionyr.cz/wp-content/uploads/Clanky/2018/02/746fc4f4-f624-4130-b481-c0cc07d71337.jpg",
+      "popisek": "Prvni fotka"
+    },
+    {
+      "url": "http://staging.pionyr.cz/wp-content/uploads/Clanky/2018/02/cb58c058-7178-4d42-ab28-746adab1337.jpg",
+      "popisek": "Druha fotka"
+    },
+    {
+      "url": "http://staging.pionyr.cz/wp-content/uploads/Clanky/2018/02/5eccabe1-6a08-4a82-a7a2-da9fa741337.jpg",
+      "popisek": "Treti fotka, dalsi je bez popisu"
+    },
+    {
+      "url": "http://staging.pionyr.cz/wp-content/uploads/Clanky/2018/02/ce5ffe18-b42b-468b-8047-d1c653291337.jpg",
+      "popisek": ""
+    }
+  ],
+  "odkazy": [
+    {
+      "url": "http://www.ledovapraha.cz",
+      "titulek": "Ledová praha"
+    },
+    {
+      "url": "www.seznam.cz",
+      "titulek": ""
+    }
+  ]
+}
