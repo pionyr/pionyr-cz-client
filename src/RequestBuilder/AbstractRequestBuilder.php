@@ -20,13 +20,19 @@ abstract class AbstractRequestBuilder
     {
         $response = $this->requestManager->sendRequest(
             RequestMethodInterface::METHOD_GET,
-            $this->getPath()
+            $this->getPath(),
+            $this->getQueryParams()
         );
 
         return $this->processResponse($response);
     }
 
     abstract protected function getPath(): string;
+
+    protected function getQueryParams(): array
+    {
+        return [];
+    }
 
     abstract protected function processResponse(\Psr\Http\Message\ResponseInterface $httpResponse): ResponseInterface;
 }
