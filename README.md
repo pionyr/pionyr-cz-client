@@ -53,11 +53,12 @@ foreach ($response->getData() as $article) {
     echo $article->getUuid();           // jedinečné ID článku (UUID)
     echo $article->getShortUuid();      // zkrácené jedinečné ID článku - pro použití například v URL
     echo $article->getTitle();          // název článku 
-    echo $article->getDatePublished();  // datum publikování
+    echo $article->getDatePublished()
+        ->format('j. n. Y H:i:s');      // datum publikování
     echo $article->getCategory();       // kategorie článku
     echo $article->getAuthorName();     // jméno a příjmení autora článku
     echo $article->getPerex();          // text perexu - krátký úvod článku
-    echo $article->getPerexPhotoUrl();  // URL úvodní fotky k článku
+    echo $article->getPerexPhotoUrl();  // URL úvodní fotky k článku (může být null)
 }
 ```
 
@@ -75,15 +76,18 @@ $article = $response->getData();
 echo $article->getUuid();           // jedinečné ID článku (UUID)
 echo $article->getShortUuid();      // zkrácené jedinečné ID článku - pro použití například v URL
 echo $article->getTitle();          // název článku
-echo $article->getDatePublished();  // datum publikování
+echo $article->getDatePublished()
+    ->format('j. n. Y H:i:s');  // datum publikování
 echo $article->getCategory();       // kategorie článku
 echo $article->getAuthorName();     // jméno a příjmení autora článku
 echo $article->getPerex();          // text perexu - krátký úvod článku
-echo $article->getPerexPhotoUrl();  // URL fotky k článku
+echo $article->getPerexPhotoUrl();  // URL fotky k článku (může být null)
 echo $article->getText();           // HTML text článku
-echo $article->getTextPhotoUrl();   // URL fotky k textu článku
-echo $article->getDateShowFrom();   // zobrazit článek od
-echo $article->getDateShowTo();     // zobrazit článek jako aktualitu do
+echo $article->getTextPhotoUrl();   // URL fotky k textu článku (může být null)
+echo $article->getDateShowFrom()
+    ->format('j. n. Y H:i:s');      // zobrazit článek jako aktualitu od (může být null)
+echo $article->getDateShowTo()
+    ->format('j. n. Y H:i:s');      // zobrazit článek jako aktualitu do (může být null)
 echo $article->isNews();            // je článek aktualita na www.pionyr.cz?
 echo $article->isNewsForMembersPublic(); // je článek veřejná aktualita pro členy?
 echo $article->isNewsForMembersPrivate(); // je článek aktualita pro členy po přihlášení?
