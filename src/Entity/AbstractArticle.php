@@ -4,6 +4,7 @@ namespace Pionyr\PionyrCz\Entity;
 
 use PascalDeVink\ShortUuid\ShortUuid;
 use Pionyr\PionyrCz\Constants\ArticleCategory;
+use Pionyr\PionyrCz\Helper\DateTimeFactory;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -74,10 +75,7 @@ class AbstractArticle
     {
         $object->uuid = Uuid::fromString($responseData->guid);
         $object->title = $responseData->nazev;
-        $object->datePublished = \DateTimeImmutable::createFromFormat(
-            'Y-m-d H:i:s',
-            $responseData->datumPublikovani
-        );
+        $object->datePublished = DateTimeFactory::fromInputString($responseData->datumPublikovani);
         $object->category = new ArticleCategory($responseData->kategorieId);
         $object->setAuthorName($responseData->autorJmeno, $responseData->autorPrijmeni);
         $object->perex = $responseData->perex;
