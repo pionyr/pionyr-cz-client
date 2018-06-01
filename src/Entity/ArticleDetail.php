@@ -28,6 +28,8 @@ class ArticleDetail extends AbstractArticle
     protected $isOfferedToOtherRegions;
     /** @var Photo[] */
     protected $photos = [];
+    /** @var Link[] */
+    protected $links = [];
 
     public static function createFromResponseData(\stdClass $responseData): self
     {
@@ -47,7 +49,7 @@ class ArticleDetail extends AbstractArticle
         $object->isOfferedToOtherRegions = $responseData->jeNabidnutDalsim;
         //$object->regions = $responseData->; // TODO
         $object->setPhotos($responseData->fotografie);
-        //$object->links = $responseData->odkazy; // TODO
+        $object->setLinks($responseData->odkazy);
 
         return $object;
     }
@@ -110,10 +112,25 @@ class ArticleDetail extends AbstractArticle
         return $this->photos;
     }
 
+    /**
+     * @return Link[]
+     */
+    public function getLinks(): array
+    {
+        return $this->links;
+    }
+
     private function setPhotos(array $photos): void
     {
         foreach ($photos as $photo) {
             $this->photos[] = Photo::create($photo->url, $photo->popisek);
+        }
+    }
+
+    private function setLinks(array $links): void
+    {
+        foreach ($links as $link) {
+            $this->links[] = Link::create($link->url, $link->titulek);
         }
     }
 }
