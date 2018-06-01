@@ -9,6 +9,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * @covers \Pionyr\PionyrCz\Entity\ArticleDetail
  * @covers \Pionyr\PionyrCz\Entity\AbstractArticle
+ * @covers \Pionyr\PionyrCz\Entity\Photo
  */
 class ArticleDetailTest extends TestCase
 {
@@ -39,6 +40,8 @@ class ArticleDetailTest extends TestCase
         $this->assertFalse($article->isMyRegion());
         $this->assertFalse($article->isMozaika());
         $this->assertFalse($article->isOfferedToOtherRegions());
+
+        $this->assertSame([], $article->getPhotos());
     }
 
     /** @test */
@@ -74,5 +77,14 @@ class ArticleDetailTest extends TestCase
         $this->assertTrue($article->isMyRegion());
         $this->assertTrue($article->isMozaika());
         $this->assertTrue($article->isOfferedToOtherRegions());
+
+        $photos = $article->getPhotos();
+        $this->assertCount(3, $photos);
+        $this->assertContainsOnlyInstancesOf(Photo::class, $photos);
+        $this->assertSame('https://pionyr.cz/1.jpg', $photos[0]->getUrl());
+        $this->assertSame('Prvni fotka', $photos[0]->getTitle());
+        $this->assertSame('https://pionyr.cz/3.jpg', $photos[2]->getUrl());
+        $this->assertSame('', $photos[2]->getTitle());
+
     }
 }

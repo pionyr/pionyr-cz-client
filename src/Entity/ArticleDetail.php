@@ -26,6 +26,8 @@ class ArticleDetail extends AbstractArticle
     protected $isMozaika;
     /** @var bool */
     protected $isOfferedToOtherRegions;
+    /** @var Photo[] */
+    protected $photos = [];
 
     public static function createFromResponseData(\stdClass $responseData): self
     {
@@ -44,7 +46,7 @@ class ArticleDetail extends AbstractArticle
         $object->isMozaika = $responseData->jeMozaika;
         $object->isOfferedToOtherRegions = $responseData->jeNabidnutDalsim;
         //$object->regions = $responseData->; // TODO
-        //$object->photos = $responseData->fotografie;  // TODO
+        $object->setPhotos($responseData->fotografie);
         //$object->links = $responseData->odkazy; // TODO
 
         return $object;
@@ -98,5 +100,20 @@ class ArticleDetail extends AbstractArticle
     public function isOfferedToOtherRegions(): bool
     {
         return $this->isOfferedToOtherRegions;
+    }
+
+    /**
+     * @return Photo[]
+     */
+    public function getPhotos(): array
+    {
+        return $this->photos;
+    }
+
+    private function setPhotos(array $photos): void
+    {
+        foreach ($photos as $photo) {
+            $this->photos[] = Photo::create($photo->url, $photo->popisek);
+        }
     }
 }

@@ -33,19 +33,15 @@
   "kategorieId": 6,
   "fotografie": [
     {
-      "url": "http://staging.pionyr.cz/wp-content/uploads/Clanky/2018/02/746fc4f4-f624-4130-b481-c0cc07d71337.jpg",
+      "url": "https://pionyr.cz/1.jpg",
       "popisek": "Prvni fotka"
     },
     {
-      "url": "http://staging.pionyr.cz/wp-content/uploads/Clanky/2018/02/cb58c058-7178-4d42-ab28-746adab1337.jpg",
-      "popisek": "Druha fotka"
+      "url": "https://pionyr.cz/2.jpg",
+      "popisek": "Druha fotka, dalsi je bez popisu"
     },
     {
-      "url": "http://staging.pionyr.cz/wp-content/uploads/Clanky/2018/02/5eccabe1-6a08-4a82-a7a2-da9fa741337.jpg",
-      "popisek": "Treti fotka, dalsi je bez popisu"
-    },
-    {
-      "url": "http://staging.pionyr.cz/wp-content/uploads/Clanky/2018/02/ce5ffe18-b42b-468b-8047-d1c653291337.jpg",
+      "url": "https://pionyr.cz/3.jpg",
       "popisek": ""
     }
   ],
