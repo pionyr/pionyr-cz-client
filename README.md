@@ -94,16 +94,27 @@ echo $article->isNewsForMembersPrivate(); // je článek aktualita pro členy po
 echo $article->isMyRegion();        // můj krajský web (?)
 echo $article->isMozaika();         // odeslat do Mozaiky Pionýra?
 echo $article->isOfferedToOtherRegions(); // je článek nabídnut dalším krajům?
-echo $article->getRegions();        // pole se seznamem KOP, ve kterých se má článek zobrazovat
-echo $article->getPhotos();         // pole fotografií článku (každá fotografie obsahuje UR a popisek)
-echo $article->getLinks();          // pole odkazů u článku (každý odkaz obsahuje URL a popisek)
+
+foreach ($article->getRegions() as $region) { // pole se seznamem KOP, ve kterých se má článek zobrazovat
+    echo $region;
+}
+
+foreach ($article->getPhotos() as $photo) { // pole fotografií článku
+    echo $photo->getUrl();
+    echo $photo->getTitle();
+}
+
+foreach ($article->getLinks() as $link) { // pole odkazů u článku
+    echo $link->getUrl();
+    echo $link->getTitle();
+}
 ```
 
 ### Akce
-To-Be-Done
+Zatím neimplementováno.
 
 ### Jednotky
-To-Be-Done
+Zatím neimplementováno.
 
 ## Changelog - seznam změn
 Pro seznam změn viz soubor [CHANGELOG.md](CHANGELOG.md). Dodržujeme [sémantické verzování](http://semver.org/).

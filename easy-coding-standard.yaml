@@ -5,3 +5,8 @@ services:
     PhpCsFixer\Fixer\PhpUnit\PhpUnitTestAnnotationFixer:
         style: annotation
     PhpCsFixer\Fixer\PhpUnit\PhpUnitTestClassRequiresCoversFixer: ~
+
+parameters:
+    skip:
+        PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff.ClassConstantNotUpperCase:
+            -  'src/Constants/Region.php'

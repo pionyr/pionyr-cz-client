@@ -4,6 +4,7 @@ namespace Pionyr\PionyrCz\Entity;
 
 use PHPUnit\Framework\TestCase;
 use Pionyr\PionyrCz\Constants\ArticleCategory;
+use Pionyr\PionyrCz\Constants\Region;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -42,6 +43,7 @@ class ArticleDetailTest extends TestCase
         $this->assertFalse($article->isMozaika());
         $this->assertFalse($article->isOfferedToOtherRegions());
 
+        $this->assertSame([], $article->getRegions());
         $this->assertSame([], $article->getPhotos());
         $this->assertSame([], $article->getLinks());
     }
@@ -79,6 +81,12 @@ class ArticleDetailTest extends TestCase
         $this->assertTrue($article->isMyRegion());
         $this->assertTrue($article->isMozaika());
         $this->assertTrue($article->isOfferedToOtherRegions());
+
+        $regions = $article->getRegions();
+        $this->assertCount(13, $regions);
+        $this->assertEquals(new Region(Region::JcKOP), $regions[Region::JcKOP]);
+        $this->assertArrayHasKey(Region::KOKhK, $regions);
+        $this->assertContainsOnlyInstancesOf(Region::class, $regions);
 
         $photos = $article->getPhotos();
         $this->assertCount(3, $photos);

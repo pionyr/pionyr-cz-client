@@ -2,6 +2,7 @@
 
 namespace Pionyr\PionyrCz\Entity;
 
+use Pionyr\PionyrCz\Constants\Region;
 use Pionyr\PionyrCz\Helper\DateTimeFactory;
 
 class ArticleDetail extends AbstractArticle
@@ -26,6 +27,8 @@ class ArticleDetail extends AbstractArticle
     protected $isMozaika;
     /** @var bool */
     protected $isOfferedToOtherRegions;
+    /** @var Region[] */
+    protected $regions = [];
     /** @var Photo[] */
     protected $photos = [];
     /** @var Link[] */
@@ -47,7 +50,7 @@ class ArticleDetail extends AbstractArticle
         $object->isMyRegion = $responseData->jeMujKrajskyWeb;
         $object->isMozaika = $responseData->jeMozaika;
         $object->isOfferedToOtherRegions = $responseData->jeNabidnutDalsim;
-        //$object->regions = $responseData->; // TODO
+        $object->setRegions($responseData);
         $object->setPhotos($responseData->fotografie);
         $object->setLinks($responseData->odkazy);
 
@@ -105,6 +108,14 @@ class ArticleDetail extends AbstractArticle
     }
 
     /**
+     * @return Region[]
+     */
+    public function getRegions(): array
+    {
+        return $this->regions;
+    }
+
+    /**
      * @return Photo[]
      */
     public function getPhotos(): array
@@ -118,6 +129,16 @@ class ArticleDetail extends AbstractArticle
     public function getLinks(): array
     {
         return $this->links;
+    }
+
+    private function setRegions(\stdClass $responseData): void
+    {
+        $availableRegions = Region::toArray();
+        foreach ($availableRegions as $regionShortcut) {
+            if (!empty($responseData->{'je' . $regionShortcut})) {
+                $this->regions[$regionShortcut] = Region::$regionShortcut();
+            }
+        }
     }
 
     private function setPhotos(array $photos): void
