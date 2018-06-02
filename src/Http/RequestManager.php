@@ -35,9 +35,9 @@ class RequestManager
         $this->apiToken = $apiToken;
     }
 
-    public function sendRequest(string $method, string $path): ResponseInterface
+    public function sendRequest(string $method, string $path, array $queryParams = []): ResponseInterface
     {
-        $httpRequest = $this->createHttpRequest($method, $path);
+        $httpRequest = $this->createHttpRequest($method, $path, $queryParams);
 
         $client = $this->createConfiguredHttpClient();
 
@@ -95,9 +95,14 @@ class RequestManager
         );
     }
 
-    protected function createHttpRequest(string $method, string $path): RequestInterface
+    protected function createHttpRequest(string $method, string $path, array $queryParams = []): RequestInterface
     {
         $uri = $this->baseUrl . $path;
+
+        $queryString = http_build_query($queryParams, '', '&');
+        if (!empty($queryString)) {
+            $uri .= '?' . $queryString;
+        }
 
         return $this->getMessageFactory()
             ->createRequest($method, $uri);

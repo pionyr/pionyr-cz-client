@@ -21,7 +21,7 @@ class RequestManagerTest extends UnitTestCase
         $manager = new RequestManager('custom-api-token');
         $manager->setHttpClient($mockClient);
 
-        $response = $manager->sendRequest(RequestMethodInterface::METHOD_GET, '/clanky/');
+        $response = $manager->sendRequest(RequestMethodInterface::METHOD_GET, '/clanky/', ['foo' => 'b', 'b' => 'c']);
 
         $this->assertInstanceOf(Response::class, $response);
 
@@ -29,7 +29,7 @@ class RequestManagerTest extends UnitTestCase
         $this->assertCount(1, $recordedRequests);
 
         $this->assertSame(
-            'https://pionyr.cz/api/clanky/?token=custom-api-token',
+            'https://pionyr.cz/api/clanky/?foo=b&b=c&token=custom-api-token',
             $recordedRequests[0]->getUri()->__toString()
         );
         $this->assertSame(RequestMethodInterface::METHOD_GET, $recordedRequests[0]->getMethod());

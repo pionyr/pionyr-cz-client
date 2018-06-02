@@ -23,11 +23,15 @@
     "require": {
         "php": "^7.1",
         "ext-json": "*",
+        "beberlei/assert": "^2.9",
         "fig/http-message-util": "^1.1",
+        "myclabs/php-enum": "^1.6",
+        "pascaldevink/shortuuid": "^2.0",
         "php-http/client-common": "^1.7",
         "php-http/discovery": "^1.4",
         "php-http/httplug": "^1.1",
-        "php-http/message-factory": "^1.0"
+        "php-http/message-factory": "^1.0",
+        "ramsey/uuid": "^3.7"
     },
     "require-dev": {
         "lmc/coding-standard": "^1.0",
