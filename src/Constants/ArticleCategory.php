@@ -4,6 +4,15 @@ namespace Pionyr\PionyrCz\Constants;
 
 use MyCLabs\Enum\Enum;
 
+/**
+ * @method static ArticleCategory AKCE_A_SOUTEZE()
+ * @method static ArticleCategory EKONOMIKA()
+ * @method static ArticleCategory MEZINARODNI()
+ * @method static ArticleCategory PROGRAM_A_HRY()
+ * @method static ArticleCategory VZDELAVANI()
+ * @method static ArticleCategory OSTATNI()
+ * @method static ArticleCategory SETKANI()
+ */
 final class ArticleCategory extends Enum
 {
     public const AKCE_A_SOUTEZE = 1;

@@ -2,6 +2,7 @@
 
 namespace Pionyr\PionyrCz\RequestBuilder;
 
+use Pionyr\PionyrCz\Constants\ArticleCategory;
 use Pionyr\PionyrCz\Entity\ArticlePreview;
 use Pionyr\PionyrCz\Http\Response\ArticlesResponse;
 use Pionyr\PionyrCz\Http\Response\ResponseInterface;
@@ -9,9 +10,43 @@ use Pionyr\PionyrCz\Http\Response\ResponseInterface;
 /** @method ArticlesResponse send() */
 class ArticlesRequestBuilder extends AbstractRequestBuilder
 {
+    /** @var int|null */
+    protected $page;
+    /** @var ArticleCategory|null */
+    protected $category;
+
+    public function setPage(?int $page): self
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
+    public function setCategory(?ArticleCategory $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
     protected function getPath(): string
     {
         return '/clanky/';
+    }
+
+    protected function getQueryParams(): array
+    {
+        $params = [];
+
+        if ($this->page !== null) {
+            $params['stranka'] = $this->page;
+        }
+
+        if ($this->category !== null) {
+            $params['kategorie'] = $this->category->getValue();
+        }
+
+        return $params;
     }
 
     protected function processResponse(\Psr\Http\Message\ResponseInterface $httpResponse): ResponseInterface

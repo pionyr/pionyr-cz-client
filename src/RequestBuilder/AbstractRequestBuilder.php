@@ -29,6 +29,7 @@ abstract class AbstractRequestBuilder
 
     abstract protected function getPath(): string;
 
+    /** @codeCoverageIgnore */
     protected function getQueryParams(): array
     {
         return [];

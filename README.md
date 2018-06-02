@@ -43,7 +43,7 @@ Seznam je stránkovaný po 30 položkách na stránku a je možné jej filtrovat
 $response = $pionyrCz->request()
     ->articles()
     ->setPage(3) // volitelné, není-li nastaveno, načte se první strana výpisu
-    ->setCategory(ArticleCategory::VZDELAVANI) // volitelné filtrování dle kategorie, není-li nastaveno, načtou se články ve všech kategoriích
+    ->setCategory(ArticleCategory::VZDELAVANI()) // volitelné filtrování dle kategorie, není-li nastaveno, načtou se články ve všech kategoriích
     ->send();
 
 echo $response->getPageCount(); // vypíše celkový počet stránek které daný seznam obsahuje
