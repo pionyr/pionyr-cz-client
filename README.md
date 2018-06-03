@@ -120,6 +120,24 @@ Zatím neimplementováno.
 ### Jednotky
 Zatím neimplementováno.
 
+### Výjimky a zpracování chyb
+
+Výjimky, ke kterým dojde v API klientovi při zpracování požadavků/odpovědí, implementují rozhraní `Pionyr\PionyrCz\Exception\PionyrCzExceptionInterface`.
+
+Strom výjimek:
+
+| Výjimka                                           | Thrown when                                                   |
+|---------------------------------------------------|---------------------------------------------------------------|
+| PionyrCzExceptionInterface                        | Společné rozhraní pro všechny výjimky API klienta             |
+| └ ClientErrorException                            | Chyba při odeslání požadavku - chybná data apod.              |
+| &nbsp;&nbsp;└ AuthorizationException              | Neautentizovaný požadavek, chybný API token                   |
+| └ ServerErrorException                            | Chyba při odpovědi serveru - výpadek služby apod.             |
+| └ ResponseDecodingException                       | Odpověd obsahuje chybná data                                  |
+
+V případě použití vlastního HTTP klienta (tedy pokud voláme `$matej->setHttpClient()`) je třeba zajistit, aby byl nastaven tak,
+že v případě HTTP chyb (400 a 500) nevyhazuje sám výjimky. Například při použití Guzzle 6 klienta to znamená že nastavení
+[`http_errors`](http://docs.guzzlephp.org/en/stable/request-options.html#http-errors) musí být `false`.
+
 ## Changelog - seznam změn
 Pro seznam změn viz soubor [CHANGELOG.md](CHANGELOG.md). Dodržujeme [sémantické verzování](http://semver.org/).
 
