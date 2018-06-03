@@ -6,7 +6,24 @@ akce, termíny a seznamy jednotek (pionýrských skupin, oddílů, klubů).
 Tato knihovna poskytuje nástroje pro snadnou práci s tímto API. Knihovna vyžaduje PHP verze 7.1 a novější.
 
 ## Instalace
-To-Be-Done
+
+Instalace knihovny se provede skrze [Composer](https://getcomposer.org/). Instalaci je možno spustit tímto příkazem:
+
+```sh
+$ composer require pionyr/pionyr-cz-client php-http/guzzle6-adapter
+```
+
+Čímž se nainstaluje API klient, který bude používat jako transportní HTTP knihovnu Guzzle 6.
+
+Knihovna používá abstrakci skrze [HTTPlug](https://github.com/php-http/httplug), takže není svázána s konkrétní
+HTTP knihovnou, a je možné dle potřeby použít i jinou HTTP knihovnu - viz
+[seznam podporovaných HTTP knihoven](http://docs.php-http.org/en/latest/clients.html).
+
+Pokud bychom chtěli použít jako transporní knihovnu místo Guzzle 6 například cURL, nainstalujeme API klienta tímto příkazem:
+
+```sh
+$ composer require pionyr/pionyr-cz-client php-http/curl-client guzzlehttp/psr7
+```
 
 ## Použití
 
