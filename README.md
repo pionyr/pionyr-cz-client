@@ -25,6 +25,8 @@ $pionyrCz = new PionyrCz('my-api-token');
 Pokud chceme pracovat s jinou instancí API než "produkční" na pionyr.cz, můžeme nastavit tzv. base URL API:
 
 ```php
+use Pionyr\PionyrCz\PionyrCz;
+
 $pionyrCz = new PionyrCz('my-api-test-token');
 $pionyrCz->setBaseUrl('http://staging.pionyr.cz/api/');
 ```
@@ -40,6 +42,8 @@ Vracejí se pouze publikované články odpovídající právům daného tokenu,
 Seznam je stránkovaný po 30 položkách na stránku a je možné jej filtrovat dle kategorie článku.
 
 ```php
+use Pionyr\PionyrCz\Constants\ArticleCategory;
+
 $response = $pionyrCz->request()
     ->articles()
     ->setPage(3) // volitelné, není-li nastaveno, načte se první strana výpisu
