@@ -33,15 +33,8 @@ class ArticleRequestBuilder extends AbstractRequestBuilder
         ];
     }
 
-    protected function processResponse(\Psr\Http\Message\ResponseInterface $httpResponse): ResponseInterface
+    protected function processResponse(\stdClass $responseData): ResponseInterface
     {
-        $responseData = json_decode($httpResponse->getBody()->getContents());
-
-        /*if (json_last_error() !== JSON_ERROR_NONE) {
-            // TODO
-            //throw ResponseDecodingException::forJsonError(json_last_error_msg(), $httpResponse);}
-        }*/
-
         $article = ArticleDetail::createFromResponseData($responseData);
 
         return ArticleResponse::create($article);

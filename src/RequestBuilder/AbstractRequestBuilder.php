@@ -24,7 +24,9 @@ abstract class AbstractRequestBuilder
             $this->getQueryParams()
         );
 
-        return $this->processResponse($response);
+        $responseData = $this->readDataFromResponse($response);
+
+        return $this->processResponse($responseData);
     }
 
     abstract protected function getPath(): string;
@@ -35,5 +37,12 @@ abstract class AbstractRequestBuilder
         return [];
     }
 
-    abstract protected function processResponse(\Psr\Http\Message\ResponseInterface $httpResponse): ResponseInterface;
+    abstract protected function processResponse(\stdClass $responseData): ResponseInterface;
+
+    private function readDataFromResponse(\Psr\Http\Message\ResponseInterface $response): \stdClass
+    {
+        $responseData = json_decode($response->getBody()->getContents());
+
+        return $responseData;
+    }
 }
