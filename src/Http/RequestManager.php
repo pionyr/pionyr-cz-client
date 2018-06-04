@@ -3,7 +3,6 @@
 namespace Pionyr\PionyrCz\Http;
 
 use Http\Client\Common\Plugin\AuthenticationPlugin;
-use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\HeaderSetPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClient;
@@ -12,6 +11,7 @@ use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
 use Http\Message\Authentication\QueryParam;
 use Http\Message\MessageFactory;
+use Pionyr\PionyrCz\Http\Plugin\ExceptionPlugin;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -90,7 +90,7 @@ class RequestManager
                 new RedirectPlugin(),
                 new HeaderSetPlugin($this->getDefaultHeaders()),
                 new AuthenticationPlugin(new QueryParam(['token' => $this->apiToken])),
-                new ErrorPlugin(),
+                new ExceptionPlugin(),
             ]
         );
     }
