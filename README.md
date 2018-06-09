@@ -85,7 +85,7 @@ foreach ($response->getData() as $article) {
 
 #### Načtení detailu jednoho článku
 
-Detail článku obsahuje stejné položky, jako jeden článek v seznamu, a k tomu je doplněn o dalších údaje.
+Detail článku obsahuje stejné položky, jako jeden článek v seznamu, a k tomu je doplněn o další údaje.
 
 ```php
 $response = $pionyrCz->request()
@@ -103,6 +103,7 @@ echo $article->getCategory();       // kategorie článku
 echo $article->getAuthorName();     // jméno a příjmení autora článku
 echo $article->getPerex();          // text perexu - krátký úvod článku
 echo $article->getPerexPhotoUrl();  // URL fotky k článku (může být null)
+
 echo $article->getText();           // HTML text článku
 echo $article->getTextPhotoUrl();   // URL fotky k textu článku (může být null)
 echo $article->getDateShowFrom()
@@ -151,8 +152,8 @@ $response = $pionyrCz->request()
     ->setDateTo(new \DateTime('2018-08-31')) // volitelné filtrování dle data - je-li nastaveno, načtou se pouze akce konající se před tímto datem
     ->send();
 
-echo $response->getPageCount(); // vypíše celkový počet stránek které daný seznam obsahuje
-echo $response->getItemTotalCount(); // vypíše celkový počet položek (na všech stránkách) které daný seznam obsahuje
+echo $response->getPageCount();         // vypíše celkový počet stránek které daný seznam obsahuje
+echo $response->getItemTotalCount();    // vypíše celkový počet položek (na všech stránkách) které daný seznam obsahuje
 
 foreach ($response->getData() as $event) {
     echo $event->getUuid();             // jedinečné ID akce (UUID)
@@ -189,7 +190,10 @@ foreach ($response->getData() as $event) {
 ```
 
 #### Načtení detailu jedné akce
-Zatím neimplementováno.
+
+Detail akce obsahuje stejné položky, jako jedna akce v seznamu, a k tomu je doplněn o další údaje.
+
+(Zatím neimplementováno.)
 
 ### Jednotky
 Zatím neimplementováno.
