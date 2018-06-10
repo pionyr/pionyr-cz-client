@@ -7,8 +7,8 @@ use Pionyr\PionyrCz\Constants\EventCategory;
 use Ramsey\Uuid\Uuid;
 
 /**
- * @covers \Pionyr\PionyrCz\Entity\EventPreview
  * @covers \Pionyr\PionyrCz\Entity\AbstractEvent
+ * @covers \Pionyr\PionyrCz\Entity\EventPreview
  * @covers \Pionyr\PionyrCz\Entity\IdentifiableTrait
  */
 class EventPreviewTest extends TestCase

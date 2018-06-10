@@ -7,8 +7,8 @@ use Pionyr\PionyrCz\Constants\ArticleCategory;
 use Ramsey\Uuid\Uuid;
 
 /**
- * @covers \Pionyr\PionyrCz\Entity\ArticlePreview
  * @covers \Pionyr\PionyrCz\Entity\AbstractArticle
+ * @covers \Pionyr\PionyrCz\Entity\ArticlePreview
  * @covers \Pionyr\PionyrCz\Entity\IdentifiableTrait
  */
 class ArticlePreviewTest extends TestCase

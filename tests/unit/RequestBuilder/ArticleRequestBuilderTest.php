@@ -9,8 +9,8 @@ use Pionyr\PionyrCz\Http\RequestManager;
 use Ramsey\Uuid\Uuid;
 
 /**
- * @covers \Pionyr\PionyrCz\RequestBuilder\ArticleRequestBuilder
  * @covers \Pionyr\PionyrCz\RequestBuilder\AbstractRequestBuilder
+ * @covers \Pionyr\PionyrCz\RequestBuilder\ArticleRequestBuilder
  */
 class ArticleRequestBuilderTest extends TestCase
 {
