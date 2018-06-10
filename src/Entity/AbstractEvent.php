@@ -2,17 +2,14 @@
 
 namespace Pionyr\PionyrCz\Entity;
 
-use PascalDeVink\ShortUuid\ShortUuid;
 use Pionyr\PionyrCz\Constants\EventCategory;
 use Pionyr\PionyrCz\Helper\DateTimeFactory;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 class AbstractEvent
 {
+    use IdentifiableTrait;
+
     protected const LOCALIZATION_NATIONWIDE = 'Celorepubliková';
-    /** @var UuidInterface */
-    protected $uuid;
     /** @var string */
     protected $title;
     /** @var string */
@@ -64,18 +61,6 @@ class AbstractEvent
 
     protected function __construct()
     {
-    }
-
-    public function getUuid(): UuidInterface
-    {
-        return $this->uuid;
-    }
-
-    public function getShortUuid(): string
-    {
-        $shortUuid = new ShortUuid();
-
-        return $shortUuid->encode($this->getUuid());
     }
 
     public function getTitle(): string
@@ -200,7 +185,7 @@ class AbstractEvent
 
     protected static function setCommonEventResponseDataToObject(\stdClass $responseData, self $object): void
     {
-        $object->uuid = Uuid::fromString($responseData->guid);
+        $object->setUuidFromString($responseData->guid);
         $object->title = $responseData->nazev;
         $object->description = $responseData->popis;
         $object->category = new EventCategory($responseData->typAkceId);
