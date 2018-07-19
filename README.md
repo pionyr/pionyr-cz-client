@@ -254,6 +254,7 @@ foreach ($response->getData() as $group) {
     echo $group->getWebsiteUrl();       // Webové stránky jednotky
     echo $group->getPhone();            // Kontaktní telefon jednotky
     echo $group->getEmail();            // E-mail jednotky
+    echo $group->getLeaderName();       // Jméno vedoucího jednotky
 
     // Adresa sídla PS
     echo $group->getAddressOfficial()->getCity()); // Město
