@@ -27,6 +27,11 @@ class RequestBuilderFactory
         return new ArticleRequestBuilder($this->requestManager, $this->getUuidFromString($uuidOrShortUuid));
     }
 
+    public function events(): EventsRequestBuilder
+    {
+        return new EventsRequestBuilder($this->requestManager);
+    }
+
     public function event(string $uuidOrShortUuid): EventRequestBuilder
     {
         return new EventRequestBuilder($this->requestManager, $this->getUuidFromString($uuidOrShortUuid));

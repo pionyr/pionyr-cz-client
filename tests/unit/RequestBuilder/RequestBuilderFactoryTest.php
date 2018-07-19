@@ -9,6 +9,7 @@ use Pionyr\PionyrCz\Http\RequestManager;
 use Pionyr\PionyrCz\Http\Response\ArticleResponse;
 use Pionyr\PionyrCz\Http\Response\ArticlesResponse;
 use Pionyr\PionyrCz\Http\Response\EventResponse;
+use Pionyr\PionyrCz\Http\Response\EventsResponse;
 
 /**
  * @covers \Pionyr\PionyrCz\RequestBuilder\RequestBuilderFactory
@@ -63,6 +64,13 @@ class RequestBuilderFactoryTest extends TestCase
                 ArticleRequestBuilder::class,
                 ArticleResponse::class,
                 __DIR__ . '/../Http/Fixtures/article-response.json',
+            ],
+            [
+                'events',
+                [],
+                EventsRequestBuilder::class,
+                EventsResponse::class,
+                __DIR__ . '/../Http/Fixtures/events-response.json',
             ],
             [
                 'event',
