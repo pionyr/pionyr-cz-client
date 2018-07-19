@@ -1,0 +1,62 @@
+[
+  {
+    "adresaSidla": {
+      "mesto": "Praha 8",
+      "ulice": "U školské zahrady 333",
+      "psc": "182 00"
+    },
+    "adresaKdeNasNajdete": {
+      "mesto": "Praha 3",
+      "ulice": "Trojitá 33",
+      "psc": "133 66"
+    },
+    "nazev": "33. pionýrská skupina Trojka",
+    "web": "http://www.tritritri.trms",
+    "telefon": "333666333",
+    "email": "trojita@test.test",
+    "vedouciJmeno": "Mr.",
+    "vedouciPrijmeni": "Bean",
+    "zemepisnaSirka": null,
+    "zemepisnaDelka": null
+  },
+  {
+    "adresaSidla": {
+      "mesto": "",
+      "ulice": "",
+      "psc": ""
+    },
+    "adresaKdeNasNajdete": {
+      "mesto": "",
+      "ulice": "",
+      "psc": ""
+    },
+    "nazev": "66. pionýrská skupina Šestka",
+    "web": "",
+    "telefon": "",
+    "email": "",
+    "vedouciJmeno": "",
+    "vedouciPrijmeni": "",
+    "zemepisnaSirka": null,
+    "zemepisnaDelka": null
+  },
+  {
+    "adresaSidla": {
+      "mesto": "Praha 8",
+      "ulice": "U školské zahrady 666",
+      "psc": "182 00"
+    },
+    "adresaKdeNasNajdete": {
+      "mesto": "Praha 3",
+      "ulice": "Trojitá 33",
+      "psc": "133 66"
+    },
+    "nazev": "333. pionýrská skupina TRMS",
+    "web": "http://www.tritritri.trms",
+    "telefon": "",
+    "email": "trms@test.test",
+    "vedouciJmeno": "AC",
+    "vedouciPrijmeni": "DC",
+    "zemepisnaSirka": null,
+    "zemepisnaDelka": null
+  }
+]
