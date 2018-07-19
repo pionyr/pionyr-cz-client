@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Pionyr\PionyrCz\Http\RequestManager;
 use Pionyr\PionyrCz\Http\Response\ArticleResponse;
 use Pionyr\PionyrCz\Http\Response\ArticlesResponse;
+use Pionyr\PionyrCz\Http\Response\EventResponse;
 
 /**
  * @covers \Pionyr\PionyrCz\RequestBuilder\RequestBuilderFactory
@@ -62,6 +63,13 @@ class RequestBuilderFactoryTest extends TestCase
                 ArticleRequestBuilder::class,
                 ArticleResponse::class,
                 __DIR__ . '/../Http/Fixtures/article-response.json',
+            ],
+            [
+                'event',
+                ['8cec671b-88c0-11e8-8c1c-00155dfe3279'],
+                EventRequestBuilder::class,
+                EventResponse::class,
+                __DIR__ . '/../Http/Fixtures/event-response.json',
             ],
         ];
     }
