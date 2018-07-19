@@ -19,7 +19,7 @@ Knihovna používá abstrakci skrze [HTTPlug](https://github.com/php-http/httplu
 HTTP knihovnou, a je možné dle potřeby použít i jinou HTTP knihovnu - viz
 [seznam podporovaných HTTP knihoven](http://docs.php-http.org/en/latest/clients.html).
 
-Pokud bychom chtěli použít jako transporní knihovnu místo Guzzle 6 například cURL, nainstalujeme API klienta tímto příkazem:
+Pokud bychom chtěli použít jako transportní knihovnu místo Guzzle 6 například cURL, nainstalujeme API klienta tímto příkazem:
 
 ```sh
 $ composer require pionyr/pionyr-cz-client php-http/curl-client guzzlehttp/psr7
@@ -85,7 +85,7 @@ foreach ($response->getData() as $article) {
 
 #### Načtení detailu jednoho článku
 
-Detail článku obsahuje stejné položky, jako jeden článek v seznamu, a k tomu je doplněn o dalších údaje.
+Detail článku obsahuje stejné položky, jako jeden článek v seznamu, a k tomu je doplněn o další údaje.
 
 ```php
 $response = $pionyrCz->request()
@@ -103,6 +103,7 @@ echo $article->getCategory();       // kategorie článku
 echo $article->getAuthorName();     // jméno a příjmení autora článku
 echo $article->getPerex();          // text perexu - krátký úvod článku
 echo $article->getPerexPhotoUrl();  // URL fotky k článku (může být null)
+
 echo $article->getText();           // HTML text článku
 echo $article->getTextPhotoUrl();   // URL fotky k textu článku (může být null)
 echo $article->getDateShowFrom()
@@ -132,7 +133,102 @@ foreach ($article->getLinks() as $link) { // pole odkazů u článku
 ```
 
 ### Akce
-Zatím neimplementováno.
+
+#### Načtení seznamu akcí
+
+Vracejí se pouze akce odpovídající právům daného tokenu.
+
+Seznam je stránkovaný po 30 položkách na stránku a je možné jej filtrovat dle kategorie akce a dle termínu akce (jako
+výchozí se načítají akce, mající datum začátku dnes nebo v budoucnu).
+
+```php
+use Pionyr\PionyrCz\Constants\EventCategory;
+
+$response = $pionyrCz->request()
+    ->events()
+    ->setPage(3) // volitelné, není-li nastaveno, načte se první strana výpisu
+    ->setCategory(EventCategory::TABOR()) // volitelné filtrování dle kategorie, není-li nastaveno, načtou se akce ve všech kategoriích
+    ->setDateFrom(new \DateTime('2018-01-01')) // volitelné filtrování dle data - je-li nastaveno, načtou se pouze akce konající se po tomto datu, jinak se načtou akce konající se ode dnešního dne
+    ->setDateTo(new \DateTime('2018-08-31')) // volitelné filtrování dle data - je-li nastaveno, načtou se pouze akce konající se před tímto datem
+    ->send();
+
+echo $response->getPageCount();         // vypíše celkový počet stránek které daný seznam obsahuje
+echo $response->getItemTotalCount();    // vypíše celkový počet položek (na všech stránkách) které daný seznam obsahuje
+
+foreach ($response->getData() as $event) {
+    echo $event->getUuid();             // jedinečné ID akce (UUID)
+    echo $event->getShortUuid();        // zkrácené jedinečné ID akce - pro použití například v URL
+    echo $event->getTitle();            // název akce
+    echo $event->getDescription();      // popis akce
+    echo $event->getCategory();         // kategorie akce
+    echo $event->getPhotoUrl();         // URL fotky (loga) akce (může být null)
+    echo $event->getOrganizer();        // pořadatel
+    echo $event->getDateFrom()
+        ->format('j. n. Y H:i');        // datum a čas začátku akce
+    echo $event->getDateTo()
+        ->format('j. n. Y H:i');        // datum a čas konce akce
+    echo $event->isImportant();         // jedná se o důležitý termín?
+    echo $event->getPlace();            // Místo konání akce
+    echo $event->getRegion();           // Kraj místa konání akce
+    echo $event->getUrl();              // Webové stránky akce (může být null)
+    echo $event->getPriceForMembers();  // cena standardní pro členy (může být null)
+    echo $event->getPriceForMembersDiscounted();  // cena zvýhodněná pro členy (může být null)
+    echo $event->getPriceForPublic();   // cena standardní pro veřejnost (může být null)
+    echo $event->getPriceForPublicDiscounted();  // cena zvýhodněná pro veřejnost (může být null)
+    echo $event->getDatePublishFrom()
+        ->format('j. n. Y');            // datum od kdy akci zveřejnit (může být null)
+    echo $event->getDatePublishTo()
+        ->format('j. n. Y');            // datum do kdy akci zveřejnit (může být null)
+    echo $event->isNationwide();        // jedná se o celorepublikovou akci?
+    echo $event->isShownInCalendar();   // zobrazit v kalendáriu?
+    echo $event->isOpenEvent();         // jedná se o otevřenou akci?
+    echo $event->getOpenEventType();    // typ otevřené akce (může být null, pokud se nejedná o otevřenou akci)
+    echo $event->isForKids();           // je akce určena pro děti?
+    echo $event->isForLeaders();        // je akce určena pro instruktory a vedoucí?
+    echo $event->isForPublic();         // je akce určena pro veřejnost?
+}
+```
+
+#### Načtení detailu jedné akce
+
+Detail akce obsahuje stejné položky, jako jedna akce v seznamu, a k tomu je doplněn o další údaje.
+
+```php
+$response = $pionyrCz->request()
+    ->event('event-uuid') // je třeba předat UUID nebo Short UUID akce
+    ->send();
+
+$event = $response->getData();
+
+echo $event->getTitle();            // název akce
+echo $event->getDescription();      // popis akce
+
+// ... a všechny položky, jako ve výpisu seznamů akcí, a navíc:
+
+echo $event->getAgeFrom();          // doporučený věk od (může být null)
+echo $event->getAgeTo();            // doporučený věk do (může být null)
+echo $event->getExpectedNumberOfParticipants(); // předpokládaný počet účastníků (může být null)
+echo $event->getTransportation();   // informace k dopravě (může být null)
+echo $event->getAccommodation();    // informace k ubytování (může být null)
+echo $event->getFood();             // informace k zajištění stavy (může být null)
+echo $event->getRequiredEquipment(); // požadované vybavení
+
+foreach ($event->getPhotos() as $photo) { // pole fotografií akce
+    echo $photo->getUrl();
+    echo $photo->getTitle();
+}
+
+foreach ($event->getFiles() as $file) { // pole souborů akce
+    echo $file->getUrl();
+    echo $file->getTitle();
+    echo $file->isPublic();         // má se soubor zobrazovat veřejně?
+}
+
+foreach ($event->getLinks() as $link) { // pole odkazů u akce
+    echo $link->getUrl();
+    echo $link->getTitle();
+}
+```
 
 ### Jednotky
 Zatím neimplementováno.

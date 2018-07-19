@@ -10,9 +10,9 @@ use Ramsey\Uuid\Uuid;
 
 /**
  * @covers \Pionyr\PionyrCz\RequestBuilder\AbstractRequestBuilder
- * @covers \Pionyr\PionyrCz\RequestBuilder\ArticleRequestBuilder
+ * @covers \Pionyr\PionyrCz\RequestBuilder\EventRequestBuilder
  */
-class ArticleRequestBuilderTest extends TestCase
+class EventRequestBuilderTest extends TestCase
 {
     /** @test */
     public function shouldSendRequest(): void
@@ -22,16 +22,16 @@ class ArticleRequestBuilderTest extends TestCase
             ->method('sendRequest')
             ->with(
                 RequestMethodInterface::METHOD_GET,
-                '/clanekDetail/',
-                ['guid' => '04840dab-2dc6-11e8-9fb0-00155dfe3280']
+                '/akceDetail/',
+                ['guid' => '8cecf047-88c0-11e8-8c1c-00155dfe3279']
             )
             ->willReturn(
-                new Response(200, [], file_get_contents(__DIR__ . '/../Http/Fixtures/article-response.json'))
+                new Response(200, [], file_get_contents(__DIR__ . '/../Http/Fixtures/event-response.json'))
             );
 
-        $builder = new ArticleRequestBuilder(
+        $builder = new EventRequestBuilder(
             $requestManagerMock,
-            Uuid::fromString('04840dab-2dc6-11e8-9fb0-00155dfe3280')
+            Uuid::fromString('8cecf047-88c0-11e8-8c1c-00155dfe3279')
         );
 
         $builder->send();

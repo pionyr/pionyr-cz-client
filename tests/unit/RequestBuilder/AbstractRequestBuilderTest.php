@@ -9,8 +9,8 @@ use Pionyr\PionyrCz\Http\RequestManager;
 use Pionyr\PionyrCz\RequestBuilder\Fixtures\DummyBuilder;
 
 /**
- * @covers \Pionyr\PionyrCz\RequestBuilder\AbstractRequestBuilder
  * @covers \Pionyr\PionyrCz\Exception\ResponseDecodingException
+ * @covers \Pionyr\PionyrCz\RequestBuilder\AbstractRequestBuilder
  */
 class AbstractRequestBuilderTest extends TestCase
 {

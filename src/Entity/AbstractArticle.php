@@ -2,16 +2,13 @@
 
 namespace Pionyr\PionyrCz\Entity;
 
-use PascalDeVink\ShortUuid\ShortUuid;
 use Pionyr\PionyrCz\Constants\ArticleCategory;
 use Pionyr\PionyrCz\Helper\DateTimeFactory;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 class AbstractArticle
 {
-    /** @var UuidInterface */
-    protected $uuid;
+    use IdentifiableTrait;
+
     /** @var string */
     protected $title;
     /** @var \DateTimeImmutable */
@@ -27,18 +24,6 @@ class AbstractArticle
 
     protected function __construct()
     {
-    }
-
-    public function getUuid(): UuidInterface
-    {
-        return $this->uuid;
-    }
-
-    public function getShortUuid(): string
-    {
-        $shortUuid = new ShortUuid();
-
-        return $shortUuid->encode($this->getUuid());
     }
 
     public function getTitle(): string
@@ -73,7 +58,7 @@ class AbstractArticle
 
     protected static function setCommonArticleResponseDataToObject(\stdClass $responseData, self $object): void
     {
-        $object->uuid = Uuid::fromString($responseData->guid);
+        $object->setUuidFromString($responseData->guid);
         $object->title = $responseData->nazev;
         $object->datePublished = DateTimeFactory::fromInputString($responseData->datumPublikovani);
         $object->category = new ArticleCategory($responseData->kategorieId);

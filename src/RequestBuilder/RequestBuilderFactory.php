@@ -5,6 +5,7 @@ namespace Pionyr\PionyrCz\RequestBuilder;
 use PascalDeVink\ShortUuid\ShortUuid;
 use Pionyr\PionyrCz\Http\RequestManager;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class RequestBuilderFactory
 {
@@ -23,6 +24,21 @@ class RequestBuilderFactory
 
     public function article(string $uuidOrShortUuid): ArticleRequestBuilder
     {
+        return new ArticleRequestBuilder($this->requestManager, $this->getUuidFromString($uuidOrShortUuid));
+    }
+
+    public function events(): EventsRequestBuilder
+    {
+        return new EventsRequestBuilder($this->requestManager);
+    }
+
+    public function event(string $uuidOrShortUuid): EventRequestBuilder
+    {
+        return new EventRequestBuilder($this->requestManager, $this->getUuidFromString($uuidOrShortUuid));
+    }
+
+    protected function getUuidFromString($uuidOrShortUuid): UuidInterface
+    {
         if (mb_strlen($uuidOrShortUuid) === 36) {
             $uuidString = $uuidOrShortUuid;
         } else {
@@ -30,8 +46,6 @@ class RequestBuilderFactory
             $uuidString = $shortUuid->decode($uuidOrShortUuid)->toString();
         }
 
-        $uuid = Uuid::fromString($uuidString);
-
-        return new ArticleRequestBuilder($this->requestManager, $uuid);
+        return Uuid::fromString($uuidString);
     }
 }

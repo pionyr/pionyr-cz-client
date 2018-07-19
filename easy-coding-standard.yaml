@@ -5,6 +5,7 @@ services:
     PhpCsFixer\Fixer\PhpUnit\PhpUnitTestAnnotationFixer:
         style: annotation
     PhpCsFixer\Fixer\PhpUnit\PhpUnitTestClassRequiresCoversFixer: ~
+    PhpCsFixer\Fixer\PhpUnit\PhpUnitOrderedCoversFixer: ~
 
 parameters:
     skip:

@@ -9,8 +9,8 @@ use Pionyr\PionyrCz\Constants\ArticleCategory;
 use Pionyr\PionyrCz\Http\RequestManager;
 
 /**
- * @covers \Pionyr\PionyrCz\RequestBuilder\ArticlesRequestBuilder
  * @covers \Pionyr\PionyrCz\RequestBuilder\AbstractRequestBuilder
+ * @covers \Pionyr\PionyrCz\RequestBuilder\ArticlesRequestBuilder
  */
 class ArticlesRequestBuilderTest extends TestCase
 {

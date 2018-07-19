@@ -14,10 +14,10 @@ use Pionyr\PionyrCz\Exception\ServerErrorException;
 use Psr\Http\Message\RequestInterface;
 
 /**
- * @covers \Pionyr\PionyrCz\Http\Plugin\ExceptionPlugin
  * @covers \Pionyr\PionyrCz\Exception\AuthorizationException
  * @covers \Pionyr\PionyrCz\Exception\ClientErrorException
  * @covers \Pionyr\PionyrCz\Exception\ServerErrorException
+ * @covers \Pionyr\PionyrCz\Http\Plugin\ExceptionPlugin
  */
 class ExceptionPluginTest extends TestCase
 {

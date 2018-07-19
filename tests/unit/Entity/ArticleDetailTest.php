@@ -8,8 +8,9 @@ use Pionyr\PionyrCz\Constants\Region;
 use Ramsey\Uuid\Uuid;
 
 /**
- * @covers \Pionyr\PionyrCz\Entity\ArticleDetail
  * @covers \Pionyr\PionyrCz\Entity\AbstractArticle
+ * @covers \Pionyr\PionyrCz\Entity\ArticleDetail
+ * @covers \Pionyr\PionyrCz\Entity\IdentifiableTrait
  * @covers \Pionyr\PionyrCz\Entity\Link
  * @covers \Pionyr\PionyrCz\Entity\Photo
  */
