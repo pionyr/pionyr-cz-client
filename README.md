@@ -170,7 +170,7 @@ foreach ($response->getData() as $event) {
     echo $event->isImportant();         // jedná se o důležitý termín?
     echo $event->getPlace();            // Místo konání akce
     echo $event->getRegion();           // Kraj místa konání akce
-    echo $event->getUrl();              // Webové stránky akce (může být null)
+    echo $event->getWebsiteUrl();       // Webové stránky akce
     echo $event->getPriceForMembers();  // cena standardní pro členy (může být null)
     echo $event->getPriceForMembersDiscounted();  // cena zvýhodněná pro členy (může být null)
     echo $event->getPriceForPublic();   // cena standardní pro veřejnost (může být null)

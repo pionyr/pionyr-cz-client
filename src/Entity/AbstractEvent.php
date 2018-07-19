@@ -30,8 +30,8 @@ class AbstractEvent
     protected $place;
     /** @var string */
     protected $region;
-    /** @var string|null */
-    protected $url;
+    /** @var string */
+    protected $websiteUrl;
     /** @var string|null */
     protected $priceForMembers;
     /** @var string|null */
@@ -113,9 +113,9 @@ class AbstractEvent
         return $this->region;
     }
 
-    public function getUrl(): ?string
+    public function getWebsiteUrl(): string
     {
-        return $this->url;
+        return $this->websiteUrl;
     }
 
     public function getPriceForMembers(): ?string
@@ -196,7 +196,7 @@ class AbstractEvent
         $object->isImportant = $responseData->jeDulezityTermin;
         $object->place = $responseData->mistoKonani;
         $object->region = $responseData->kraj;
-        $object->url = $responseData->web ?: null;
+        $object->websiteUrl = $responseData->web ?: '';
         $object->priceForMembers = $responseData->cenaStandardniCleni ?: null;
         $object->priceForMembersDiscounted = $responseData->cenaZvyhodnenaCleni ?: null;
         $object->priceForPublic = $responseData->cenaStandardniVerejnost ?: null;
