@@ -5,21 +5,10 @@ namespace Pionyr\PionyrCz\Http\Response;
 use Assert\Assertion;
 use Pionyr\PionyrCz\Entity\Group;
 
-class GroupsResponse implements ResponseInterface
+class GroupsResponse extends AbstractListResponse
 {
     /** @var Group[] */
     private $data;
-    /** @var int */
-    private $pageCount;
-    /** @var int */
-    private $itemTotalCount;
-
-    private function __construct(array $data, int $pageCount, int $itemTotalCount)
-    {
-        $this->setData($data);
-        $this->pageCount = $pageCount;
-        $this->itemTotalCount = $itemTotalCount;
-    }
 
     public static function create(array $data, int $pageCount, int $itemTotalCount): self
     {
@@ -32,18 +21,6 @@ class GroupsResponse implements ResponseInterface
     public function getData(): array
     {
         return $this->data;
-    }
-
-    /** @return int */
-    public function getPageCount(): int
-    {
-        return $this->pageCount;
-    }
-
-    /** @return int */
-    public function getItemTotalCount(): int
-    {
-        return $this->itemTotalCount;
     }
 
     protected function setData(array $data): void
