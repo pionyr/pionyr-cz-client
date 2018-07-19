@@ -19,7 +19,7 @@ Knihovna používá abstrakci skrze [HTTPlug](https://github.com/php-http/httplu
 HTTP knihovnou, a je možné dle potřeby použít i jinou HTTP knihovnu - viz
 [seznam podporovaných HTTP knihoven](http://docs.php-http.org/en/latest/clients.html).
 
-Pokud bychom chtěli použít jako transporní knihovnu místo Guzzle 6 například cURL, nainstalujeme API klienta tímto příkazem:
+Pokud bychom chtěli použít jako transportní knihovnu místo Guzzle 6 například cURL, nainstalujeme API klienta tímto příkazem:
 
 ```sh
 $ composer require pionyr/pionyr-cz-client php-http/curl-client guzzlehttp/psr7
@@ -193,7 +193,42 @@ foreach ($response->getData() as $event) {
 
 Detail akce obsahuje stejné položky, jako jedna akce v seznamu, a k tomu je doplněn o další údaje.
 
-(Zatím neimplementováno.)
+```php
+$response = $pionyrCz->request()
+    ->event('event-uuid') // je třeba předat UUID nebo Short UUID akce
+    ->send();
+
+$event = $response->getData();
+
+echo $event->getTitle();            // název akce
+echo $event->getDescription();      // popis akce
+
+// ... a všechny položky, jako ve výpisu seznamů akcí, a navíc:
+
+echo $event->getAgeFrom();          // doporučený věk od (může být null)
+echo $event->getAgeTo();            // doporučený věk do (může být null)
+echo $event->getExpectedNumberOfParticipants(); // předpokládaný počet účastníků (může být null)
+echo $event->getTransportation();   // informace k dopravě (může být null)
+echo $event->getAccommodation();    // informace k ubytování (může být null)
+echo $event->getFood();             // informace k zajištění stavy (může být null)
+echo $event->getRequiredEquipment(); // požadované vybavení
+
+foreach ($event->getPhotos() as $photo) { // pole fotografií akce
+    echo $photo->getUrl();
+    echo $photo->getTitle();
+}
+
+foreach ($event->getFiles() as $file) { // pole souborů akce
+    echo $file->getUrl();
+    echo $file->getTitle();
+    echo $file->isPublic();         // má se soubor zobrazovat veřejně?
+}
+
+foreach ($event->getLinks() as $link) { // pole odkazů u akce
+    echo $link->getUrl();
+    echo $link->getTitle();
+}
+```
 
 ### Jednotky
 Zatím neimplementováno.
