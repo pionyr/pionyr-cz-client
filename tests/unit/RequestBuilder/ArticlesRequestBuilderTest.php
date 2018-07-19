@@ -6,9 +6,13 @@ use Fig\Http\Message\RequestMethodInterface;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Pionyr\PionyrCz\Constants\ArticleCategory;
+use Pionyr\PionyrCz\Entity\ArticlePreview;
 use Pionyr\PionyrCz\Http\RequestManager;
+use Pionyr\PionyrCz\Http\Response\ArticlesResponse;
 
 /**
+ * @covers \Pionyr\PionyrCz\Http\Response\AbstractListResponse
+ * @covers \Pionyr\PionyrCz\Http\Response\ArticlesResponse
  * @covers \Pionyr\PionyrCz\RequestBuilder\AbstractRequestBuilder
  * @covers \Pionyr\PionyrCz\RequestBuilder\ArticlesRequestBuilder
  */
@@ -27,7 +31,12 @@ class ArticlesRequestBuilderTest extends TestCase
 
         $builder = new ArticlesRequestBuilder($requestManagerMock);
 
-        $builder->send();
+        $response = $builder->send();
+
+        $this->assertInstanceOf(ArticlesResponse::class, $response);
+        $this->assertSame(6, $response->getItemTotalCount());
+        $this->assertSame(1, $response->getPageCount());
+        $this->assertContainsOnlyInstancesOf(ArticlePreview::class, $response->getData());
     }
 
     /** @test */

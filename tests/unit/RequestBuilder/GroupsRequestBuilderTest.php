@@ -5,9 +5,13 @@ namespace Pionyr\PionyrCz\RequestBuilder;
 use Fig\Http\Message\RequestMethodInterface;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use Pionyr\PionyrCz\Entity\Group;
 use Pionyr\PionyrCz\Http\RequestManager;
+use Pionyr\PionyrCz\Http\Response\GroupsResponse;
 
 /**
+ * @covers \Pionyr\PionyrCz\Http\Response\AbstractListResponse
+ * @covers \Pionyr\PionyrCz\Http\Response\GroupsResponse
  * @covers \Pionyr\PionyrCz\RequestBuilder\AbstractRequestBuilder
  * @covers \Pionyr\PionyrCz\RequestBuilder\GroupsRequestBuilder
  */
@@ -26,7 +30,12 @@ class GroupsRequestBuilderTest extends TestCase
 
         $builder = new GroupsRequestBuilder($requestManagerMock);
 
-        $builder->send();
+        $response = $builder->send();
+
+        $this->assertInstanceOf(GroupsResponse::class, $response);
+        $this->assertSame(3, $response->getItemTotalCount());
+        $this->assertSame(1, $response->getPageCount());
+        $this->assertContainsOnlyInstancesOf(Group::class, $response->getData());
     }
 
     /** @test */

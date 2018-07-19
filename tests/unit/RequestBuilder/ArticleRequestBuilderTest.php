@@ -5,10 +5,13 @@ namespace Pionyr\PionyrCz\RequestBuilder;
 use Fig\Http\Message\RequestMethodInterface;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use Pionyr\PionyrCz\Entity\ArticleDetail;
 use Pionyr\PionyrCz\Http\RequestManager;
+use Pionyr\PionyrCz\Http\Response\ArticleResponse;
 use Ramsey\Uuid\Uuid;
 
 /**
+ * @covers \Pionyr\PionyrCz\Http\Response\ArticleResponse
  * @covers \Pionyr\PionyrCz\RequestBuilder\AbstractRequestBuilder
  * @covers \Pionyr\PionyrCz\RequestBuilder\ArticleRequestBuilder
  */
@@ -34,6 +37,9 @@ class ArticleRequestBuilderTest extends TestCase
             Uuid::fromString('04840dab-2dc6-11e8-9fb0-00155dfe3280')
         );
 
-        $builder->send();
+        $response = $builder->send();
+
+        $this->assertInstanceOf(ArticleResponse::class, $response);
+        $this->assertInstanceOf(ArticleDetail::class, $response->getData());
     }
 }

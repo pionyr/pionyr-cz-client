@@ -6,9 +6,13 @@ use Fig\Http\Message\RequestMethodInterface;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Pionyr\PionyrCz\Constants\EventCategory;
+use Pionyr\PionyrCz\Entity\EventPreview;
 use Pionyr\PionyrCz\Http\RequestManager;
+use Pionyr\PionyrCz\Http\Response\EventsResponse;
 
 /**
+ * @covers \Pionyr\PionyrCz\Http\Response\AbstractListResponse
+ * @covers \Pionyr\PionyrCz\Http\Response\EventsResponse
  * @covers \Pionyr\PionyrCz\RequestBuilder\AbstractRequestBuilder
  * @covers \Pionyr\PionyrCz\RequestBuilder\EventsRequestBuilder
  */
@@ -27,7 +31,12 @@ class EventsRequestBuilderTest extends TestCase
 
         $builder = new EventsRequestBuilder($requestManagerMock);
 
-        $builder->send();
+        $response = $builder->send();
+
+        $this->assertInstanceOf(EventsResponse::class, $response);
+        $this->assertSame(6, $response->getItemTotalCount());
+        $this->assertSame(2, $response->getPageCount());
+        $this->assertContainsOnlyInstancesOf(EventPreview::class, $response->getData());
     }
 
     /** @test */
