@@ -34,7 +34,7 @@ class EventPreviewTest extends TestCase
         $this->assertFalse($event->isImportant());
         $this->assertSame('Karlova 336, Karlovy Vary', $event->getPlace());
         $this->assertSame('Karlovarský', $event->getRegion());
-        $this->assertSame('https://www.example.com/event/', $event->getUrl());
+        $this->assertSame('https://www.example.com/event/', $event->getWebsiteUrl());
         $this->assertNull($event->getPriceForMembers());
         $this->assertNull($event->getPriceForMembersDiscounted());
         $this->assertSame('3 Kč', $event->getPriceForPublic());

@@ -16,7 +16,7 @@ use Ramsey\Uuid\Uuid;
  */
 class EventDetailTest extends TestCase
 {
-    /** @xtest */
+    /** @test */
     public function shouldCreateMinimalEventDetailFromResponseJson(): void
     {
         $responseData = json_decode(file_get_contents(__DIR__ . '/Fixtures/event-detail-minimal.json'));
@@ -37,7 +37,7 @@ class EventDetailTest extends TestCase
         $this->assertFalse($event->isImportant());
         $this->assertSame('Bengtsår Camp Island, Hanko, Finland', $event->getPlace());
         $this->assertSame('Zahraničí', $event->getRegion());
-        $this->assertNull($event->getUrl());
+        $this->assertSame('', $event->getWebsiteUrl());
         $this->assertNull($event->getPriceForMembers());
         $this->assertNull($event->getPriceForMembersDiscounted());
         $this->assertNull($event->getPriceForPublic());
@@ -86,7 +86,7 @@ class EventDetailTest extends TestCase
         $this->assertTrue($event->isImportant());
         $this->assertSame('Zelená Lhota', $event->getPlace());
         $this->assertSame('Plzeňský', $event->getRegion());
-        $this->assertSame('https://web.cz', $event->getUrl());
+        $this->assertSame('https://web.cz', $event->getWebsiteUrl());
         $this->assertSame('900 Kč', $event->getPriceForMembers());
         $this->assertSame('800 Kč', $event->getPriceForMembersDiscounted());
         $this->assertSame('2000 Kč', $event->getPriceForPublic());

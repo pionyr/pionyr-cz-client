@@ -1,0 +1,20 @@
+{
+  "adresaSidla": {
+    "mesto": "Praha 8",
+    "ulice": "U školské zahrady 430/9",
+    "psc": "182 00"
+  },
+  "adresaKdeNasNajdete": {
+    "mesto": "Praha 3",
+    "ulice": "Trojitá 33",
+    "psc": "133 66"
+  },
+  "nazev": "33. pionýrská skupina Trojka",
+  "web": "https://www.tritritri.trms",
+  "telefon": "333666333",
+  "email": "trojita@test.test",
+  "vedouciJmeno": "Mr.",
+  "vedouciPrijmeni": "Bean",
+  "zemepisnaSirka": null,
+  "zemepisnaDelka": null
+}

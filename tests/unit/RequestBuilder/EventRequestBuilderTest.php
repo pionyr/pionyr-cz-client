@@ -5,10 +5,13 @@ namespace Pionyr\PionyrCz\RequestBuilder;
 use Fig\Http\Message\RequestMethodInterface;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use Pionyr\PionyrCz\Entity\EventDetail;
 use Pionyr\PionyrCz\Http\RequestManager;
+use Pionyr\PionyrCz\Http\Response\EventResponse;
 use Ramsey\Uuid\Uuid;
 
 /**
+ * @covers \Pionyr\PionyrCz\Http\Response\EventResponse
  * @covers \Pionyr\PionyrCz\RequestBuilder\AbstractRequestBuilder
  * @covers \Pionyr\PionyrCz\RequestBuilder\EventRequestBuilder
  */
@@ -34,6 +37,9 @@ class EventRequestBuilderTest extends TestCase
             Uuid::fromString('8cecf047-88c0-11e8-8c1c-00155dfe3279')
         );
 
-        $builder->send();
+        $response = $builder->send();
+
+        $this->assertInstanceOf(EventResponse::class, $response);
+        $this->assertInstanceOf(EventDetail::class, $response->getData());
     }
 }

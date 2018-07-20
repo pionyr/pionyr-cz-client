@@ -170,7 +170,7 @@ foreach ($response->getData() as $event) {
     echo $event->isImportant();         // jedná se o důležitý termín?
     echo $event->getPlace();            // Místo konání akce
     echo $event->getRegion();           // Kraj místa konání akce
-    echo $event->getUrl();              // Webové stránky akce (může být null)
+    echo $event->getWebsiteUrl();       // Webové stránky akce
     echo $event->getPriceForMembers();  // cena standardní pro členy (může být null)
     echo $event->getPriceForMembersDiscounted();  // cena zvýhodněná pro členy (může být null)
     echo $event->getPriceForPublic();   // cena standardní pro veřejnost (může být null)
@@ -231,6 +231,49 @@ foreach ($event->getLinks() as $link) { // pole odkazů u akce
 ```
 
 ### Jednotky
+
+#### Pionýrské skupiny
+
+Vracejí se pouze skupiny odpovídající právům daného tokenu (podjednotky kraje).
+
+Seznam je stránkovaný po 50 položkách na stránku.
+
+```php
+use Pionyr\PionyrCz\Constants\EventCategory;
+
+$response = $pionyrCz->request()
+    ->groups()
+    ->setPage(3) // volitelné, není-li nastaveno, načte se první strana výpisu
+    ->send();
+
+echo $response->getPageCount();         // vypíše celkový počet stránek které daný seznam obsahuje
+echo $response->getItemTotalCount();    // vypíše celkový počet položek (na všech stránkách) které daný seznam obsahuje
+
+foreach ($response->getData() as $group) {
+    echo $group->getName();             // název jednotky
+    echo $group->getWebsiteUrl();       // Webové stránky jednotky
+    echo $group->getPhone();            // Kontaktní telefon jednotky
+    echo $group->getEmail();            // E-mail jednotky
+    echo $group->getLeaderName();       // Jméno vedoucího jednotky
+
+    // Adresa sídla PS
+    echo $group->getAddressOfficial()->getCity()); // Město
+    echo $group->getAddressOfficial()->getStreet()); // Ulice
+    echo $group->getAddressOfficial()->getPostcode()); // PSČ
+
+    // Adresa Kde nás najdete
+    echo $group->getAddressWhereToFindUs()->getCity()); // Město
+    echo $group->getAddressWhereToFindUs()->getStreet()); // Ulice
+    echo $group->getAddressWhereToFindUs()->getPostcode()); // PSČ
+}
+```
+
+#### Oddíly
+
+Zatím neimplementováno.
+
+#### Kluby
+
 Zatím neimplementováno.
 
 ### Výjimky a zpracování chyb

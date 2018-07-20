@@ -3,11 +3,11 @@
 namespace Pionyr\PionyrCz\Http\Response;
 
 use Assert\Assertion;
-use Pionyr\PionyrCz\Entity\ArticlePreview;
+use Pionyr\PionyrCz\Entity\Group;
 
-class ArticlesResponse extends AbstractListResponse
+class GroupsResponse extends AbstractListResponse
 {
-    /** @var ArticlePreview[] */
+    /** @var Group[] */
     private $data;
 
     public static function create(array $data, int $pageCount, int $itemTotalCount): self
@@ -16,7 +16,7 @@ class ArticlesResponse extends AbstractListResponse
     }
 
     /**
-     * @return ArticlePreview[]
+     * @return Group[]
      */
     public function getData(): array
     {
@@ -25,7 +25,7 @@ class ArticlesResponse extends AbstractListResponse
 
     protected function setData(array $data): void
     {
-        Assertion::allIsInstanceOf($data, ArticlePreview::class);
+        Assertion::allIsInstanceOf($data, Group::class);
 
         $this->data = $data;
     }

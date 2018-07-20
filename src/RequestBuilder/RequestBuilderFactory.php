@@ -37,6 +37,11 @@ class RequestBuilderFactory
         return new EventRequestBuilder($this->requestManager, $this->getUuidFromString($uuidOrShortUuid));
     }
 
+    public function groups(): GroupsRequestBuilder
+    {
+        return new GroupsRequestBuilder($this->requestManager);
+    }
+
     protected function getUuidFromString($uuidOrShortUuid): UuidInterface
     {
         if (mb_strlen($uuidOrShortUuid) === 36) {
