@@ -290,7 +290,7 @@ Strom výjimek:
 | └ ServerErrorException                            | Chyba při odpovědi serveru - výpadek služby apod.             |
 | └ ResponseDecodingException                       | Odpověd obsahuje chybná data                                  |
 
-V případě použití vlastního HTTP klienta (tedy pokud voláme `$matej->setHttpClient()`) je třeba zajistit, aby byl nastaven tak,
+V případě použití vlastního HTTP klienta (tedy pokud voláme `$pionyrCz->setHttpClient()`) je třeba zajistit, aby byl nastaven tak,
 že v případě HTTP chyb (400 a 500) nevyhazuje sám výjimky. Například při použití Guzzle 6 klienta to znamená že nastavení
 [`http_errors`](http://docs.guzzlephp.org/en/stable/request-options.html#http-errors) musí být `false`.
 
