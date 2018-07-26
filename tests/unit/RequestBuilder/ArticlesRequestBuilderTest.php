@@ -57,7 +57,7 @@ class ArticlesRequestBuilderTest extends TestCase
         $builder = new ArticlesRequestBuilder($requestManagerMock);
 
         $builder->setPage(333)
-            ->setCategory(ArticleCategory::VZDELAVANI())
+            ->setCategory(ArticleCategory::VZDELAVANI)
             ->send();
     }
 }

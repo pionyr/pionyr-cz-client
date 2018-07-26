@@ -5,15 +5,10 @@ namespace Pionyr\PionyrCz\Constants;
 use MyCLabs\Enum\Enum;
 
 /**
- * @method static ArticleCategory AKCE_A_SOUTEZE()
- * @method static ArticleCategory EKONOMIKA()
- * @method static ArticleCategory MEZINARODNI()
- * @method static ArticleCategory PROGRAM_A_HRY()
- * @method static ArticleCategory VZDELAVANI()
- * @method static ArticleCategory OSTATNI()
- * @method static ArticleCategory SETKANI()
+ * Constants for the most common article categories.
+ * Note this is not complete list nor enum - categories are user-editable, thus may change anytime.
  */
-final class ArticleCategory extends Enum
+final class ArticleCategory
 {
     public const AKCE_A_SOUTEZE = 1;
     public const EKONOMIKA = 2;
@@ -22,20 +17,11 @@ final class ArticleCategory extends Enum
     public const VZDELAVANI = 5;
     public const OSTATNI = 6;
     public const SETKANI = 7;
+    public const UVODNI_NOVINKY = 9;
+    public const JMKOP = 12;
+    public const PTO = 13;
 
-    /** @var string[] */
-    private $descriptions = [
-        self::AKCE_A_SOUTEZE => 'Akce a soutěže',
-        self::EKONOMIKA => 'Ekonomika',
-        self::MEZINARODNI => 'Mezinárodní',
-        self::PROGRAM_A_HRY => 'Program a hry',
-        self::VZDELAVANI => 'Vzdělávání',
-        self::OSTATNI => 'Ostatní',
-        self::SETKANI => 'Setkání',
-    ];
-
-    public function __toString(): string
+    private function __construct()
     {
-        return $this->descriptions[$this->getValue()];
     }
 }
