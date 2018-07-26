@@ -2,7 +2,6 @@
 
 namespace Pionyr\PionyrCz\RequestBuilder;
 
-use Pionyr\PionyrCz\Constants\ArticleCategory;
 use Pionyr\PionyrCz\Entity\ArticlePreview;
 use Pionyr\PionyrCz\Http\Response\ArticlesResponse;
 use Pionyr\PionyrCz\Http\Response\ResponseInterface;
@@ -12,8 +11,8 @@ class ArticlesRequestBuilder extends AbstractRequestBuilder
 {
     /** @var int|null */
     protected $page;
-    /** @var ArticleCategory|null */
-    protected $category;
+    /** @var int */
+    protected $categoryId;
 
     public function setPage(?int $page): self
     {
@@ -22,9 +21,9 @@ class ArticlesRequestBuilder extends AbstractRequestBuilder
         return $this;
     }
 
-    public function setCategory(?ArticleCategory $category): self
+    public function setCategory(int $categoryId): self
     {
-        $this->category = $category;
+        $this->categoryId = $categoryId;
 
         return $this;
     }
@@ -42,8 +41,8 @@ class ArticlesRequestBuilder extends AbstractRequestBuilder
             $params['stranka'] = $this->page;
         }
 
-        if ($this->category !== null) {
-            $params['kategorie'] = $this->category->getValue();
+        if ($this->categoryId !== null) {
+            $params['kategorie'] = $this->categoryId;
         }
 
         return $params;

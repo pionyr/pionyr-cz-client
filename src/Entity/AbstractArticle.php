@@ -2,7 +2,6 @@
 
 namespace Pionyr\PionyrCz\Entity;
 
-use Pionyr\PionyrCz\Constants\ArticleCategory;
 use Pionyr\PionyrCz\Helper\DateTimeFactory;
 
 class AbstractArticle
@@ -13,8 +12,10 @@ class AbstractArticle
     protected $title;
     /** @var \DateTimeImmutable */
     protected $datePublished;
-    /** @var ArticleCategory */
+    /** @var string */
     protected $category;
+    /** @var int */
+    protected $categoryId;
     /** @var string */
     protected $authorName;
     /** @var string */
@@ -36,9 +37,14 @@ class AbstractArticle
         return $this->datePublished;
     }
 
-    public function getCategory(): ArticleCategory
+    public function getCategory(): string
     {
         return $this->category;
+    }
+
+    public function getCategoryId(): int
+    {
+        return $this->categoryId;
     }
 
     public function getAuthorName(): string
@@ -61,7 +67,7 @@ class AbstractArticle
         $object->setUuidFromString($responseData->guid);
         $object->title = $responseData->nazev;
         $object->datePublished = DateTimeFactory::fromInputString($responseData->datumPublikovani);
-        $object->category = new ArticleCategory($responseData->kategorieId);
+        $object->setCategory($responseData->kategorie, $responseData->kategorieId);
         $object->setAuthorName($responseData->autorJmeno, $responseData->autorPrijmeni);
         $object->perex = $responseData->perex;
         $object->perexPhotoUrl = $responseData->perexUrl;
@@ -70,5 +76,11 @@ class AbstractArticle
     protected function setAuthorName(string $firstName = '', string $secondName = ''): void
     {
         $this->authorName = trim($firstName . ' ' . $secondName);
+    }
+
+    protected function setCategory(string $category, int $categoryId): void
+    {
+        $this->category = $category;
+        $this->categoryId = $categoryId;
     }
 }

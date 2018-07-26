@@ -14,7 +14,7 @@ class AbstractEvent
     protected $title;
     /** @var string */
     protected $description;
-    /** @var EventCategory */
+    /** @var EventCategory|null */
     protected $category;
     /** @var string|null */
     protected $photoUrl;
@@ -73,7 +73,7 @@ class AbstractEvent
         return $this->description;
     }
 
-    public function getCategory(): EventCategory
+    public function getCategory(): ?EventCategory
     {
         return $this->category;
     }
@@ -188,7 +188,7 @@ class AbstractEvent
         $object->setUuidFromString($responseData->guid);
         $object->title = $responseData->nazev;
         $object->description = $responseData->popis;
-        $object->category = new EventCategory($responseData->typAkceId);
+        $object->setCategory($responseData->typAkceId);
         $object->photoUrl = $responseData->logoUrl;
         $object->organizer = $responseData->poradatel;
         $object->dateFrom = DateTimeFactory::fromInputString($responseData->terminOd . ' ' . $responseData->casOd);
@@ -210,5 +210,12 @@ class AbstractEvent
         $object->isForKids = $responseData->jeProDeti;
         $object->isForLeaders = $responseData->jeProVedouci;
         $object->isForPublic = $responseData->jeProVerejnost;
+    }
+
+    protected function setCategory(int $categoryId): void
+    {
+        if (EventCategory::isValid($categoryId)) {
+            $this->category = new EventCategory($categoryId);
+        }
     }
 }

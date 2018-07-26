@@ -60,4 +60,14 @@ class EventPreviewTest extends TestCase
         $this->assertCount(2, $articles);
         $this->assertContainsOnlyInstancesOf(EventPreview::class, $articles);
     }
+
+    /** @test */
+    public function shouldHandleUnknownCategory(): void
+    {
+        $responseData = json_decode(file_get_contents(__DIR__ . '/Fixtures/event-preview-unknown-category.json'));
+
+        $event = EventPreview::createFromResponseData($responseData);
+
+        $this->assertNull($event->getCategory());
+    }
 }
