@@ -11,6 +11,3 @@ parameters:
     skip:
         PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff.ClassConstantNotUpperCase:
             -  'src/Constants/Region.php'
-        # Workaround for bug https://github.com/Symplify/Symplify/issues/855
-        Symplify\CodingStandard\Fixer\Naming\ClassNameSuffixByParentFixer:
-            -  'tests/unit/RequestBuilder/Fixtures/DummyBuilder.php'
