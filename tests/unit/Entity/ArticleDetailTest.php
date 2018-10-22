@@ -25,7 +25,7 @@ class ArticleDetailTest extends TestCase
 
         $this->assertSame('Aktualita', $article->getTitle());
         $this->assertEquals(Uuid::fromString('635124ec-3d05-447d-acc4-2a87d7a711a3'), $article->getUuid());
-        $this->assertSame('635124ec-3d05-447d-acc4-2a87d7a711a3', (string) $article->getUuid());
+        $this->assertSame('635124ec-3d05-447d-acc4-2a87d7a711a3', $article->getUuid()->toString());
         $this->assertSame('5dQgVtfyTfje6wXfRyjEgK', $article->getShortUuid());
         $this->assertEquals(new \DateTimeImmutable('2018-04-27 13:33:36'), $article->getDatePublished());
         $this->assertSame('Akce a soutěže', $article->getCategory());
@@ -58,7 +58,7 @@ class ArticleDetailTest extends TestCase
 
         $this->assertSame('Dračí smyčka 2018', $article->getTitle());
         $this->assertEquals(Uuid::fromString('04840dab-2dc6-11e8-9fb0-00155dfe3280'), $article->getUuid());
-        $this->assertSame('04840dab-2dc6-11e8-9fb0-00155dfe3280', (string) $article->getUuid());
+        $this->assertSame('04840dab-2dc6-11e8-9fb0-00155dfe3280', $article->getUuid()->toString());
         $this->assertSame('6Ri3Yt94oC7M4KsxZaToo', $article->getShortUuid());
         $this->assertSame('2018-02-15 13:33:36', $article->getDatePublished()->format('Y-m-d H:i:s'));
         $this->assertSame('Ostatní', $article->getCategory());

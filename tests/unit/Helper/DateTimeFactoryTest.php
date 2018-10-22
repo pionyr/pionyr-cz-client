@@ -3,6 +3,7 @@
 namespace Pionyr\PionyrCz\Helper;
 
 use PHPUnit\Framework\TestCase;
+use Pionyr\PionyrCz\Exception\ResponseDecodingException;
 
 /**
  * @covers \Pionyr\PionyrCz\Helper\DateTimeFactory
@@ -51,5 +52,13 @@ class DateTimeFactoryTest extends TestCase
         return [
             [null, null],
         ];
+    }
+
+    /** @test */
+    public function shouldThrowExceptionWhenCannotCreateFromFormat(): void
+    {
+        $this->expectException(ResponseDecodingException::class);
+        $this->expectExceptionMessage('Error creating date from string "fooBar"');
+        DateTimeFactory::fromInputString('fooBar');
     }
 }
