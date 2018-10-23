@@ -25,7 +25,7 @@ class EventDetailTest extends TestCase
 
         $this->assertSame('Participation Island 2018', $event->getTitle());
         $this->assertEquals(Uuid::fromString('8cecf686-88c0-11e8-8c1c-00155dfe3333'), $event->getUuid());
-        $this->assertSame('8cecf686-88c0-11e8-8c1c-00155dfe3333', (string) $event->getUuid());
+        $this->assertSame('8cecf686-88c0-11e8-8c1c-00155dfe3333', $event->getUuid()->toString());
         $this->assertSame('85sRkup5hiKrLMr8B2JD6T', $event->getShortUuid());
         $this->assertSame('<p>Mezinárodní tábor spřátelené organizace ve Finsku.</p>', $event->getDescription());
         $this->assertEquals(EventCategory::MEZINARODNI(), $event->getCategory());
@@ -74,7 +74,7 @@ class EventDetailTest extends TestCase
 
         $this->assertSame('LTŠ rukodělná Zelená Lhota', $event->getTitle());
         $this->assertEquals(Uuid::fromString('8cec671b-88c0-11e8-8c1c-00155dfe3279'), $event->getUuid());
-        $this->assertSame('8cec671b-88c0-11e8-8c1c-00155dfe3279', (string) $event->getUuid());
+        $this->assertSame('8cec671b-88c0-11e8-8c1c-00155dfe3279', $event->getUuid()->toString());
         $this->assertSame('z95uRC4pSQuXnWsQ6u2C6T', $event->getShortUuid());
         $this->assertSame('<p>Jedná se o rukodělný týden.</p>', $event->getDescription());
         $this->assertEquals(EventCategory::VZDELAVACI(), $event->getCategory());

@@ -64,7 +64,7 @@ use Pionyr\PionyrCz\Constants\ArticleCategory;
 $response = $pionyrCz->request()
     ->articles()
     ->setPage(3) // volitelné, není-li nastaveno, načte se první strana výpisu
-    ->setCategory(ArticleCategory::VZDELAVANI()) // volitelné filtrování dle kategorie, není-li nastaveno, načtou se články ve všech kategoriích
+    ->setCategory(9) // volitelné filtrování dle kategorie, není-li nastaveno, načtou se články ve všech kategoriích
     ->send();
 
 echo $response->getPageCount(); // vypíše celkový počet stránek které daný seznam obsahuje
@@ -77,6 +77,7 @@ foreach ($response->getData() as $article) {
     echo $article->getDatePublished()
         ->format('j. n. Y H:i:s');      // datum publikování
     echo $article->getCategory();       // kategorie článku
+    echo $article->getCategoryId();     // ID kategorie článku
     echo $article->getAuthorName();     // jméno a příjmení autora článku
     echo $article->getPerex();          // text perexu - krátký úvod článku
     echo $article->getPerexPhotoUrl();  // URL úvodní fotky k článku (může být null)
@@ -100,6 +101,7 @@ echo $article->getTitle();          // název článku
 echo $article->getDatePublished()
     ->format('j. n. Y H:i:s');  // datum publikování
 echo $article->getCategory();       // kategorie článku
+echo $article->getCategoryId();     // ID kategorie článku
 echo $article->getAuthorName();     // jméno a příjmení autora článku
 echo $article->getPerex();          // text perexu - krátký úvod článku
 echo $article->getPerexPhotoUrl();  // URL fotky k článku (může být null)
@@ -160,7 +162,7 @@ foreach ($response->getData() as $event) {
     echo $event->getShortUuid();        // zkrácené jedinečné ID akce - pro použití například v URL
     echo $event->getTitle();            // název akce
     echo $event->getDescription();      // popis akce
-    echo $event->getCategory();         // kategorie akce
+    echo $event->getCategory();         // kategorie akce (může být null)
     echo $event->getPhotoUrl();         // URL fotky (loga) akce (může být null)
     echo $event->getOrganizer();        // pořadatel
     echo $event->getDateFrom()

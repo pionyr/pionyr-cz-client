@@ -2,6 +2,8 @@
 
 namespace Pionyr\PionyrCz\Helper;
 
+use Pionyr\PionyrCz\Exception\ResponseDecodingException;
+
 class DateTimeFactory
 {
     public static function fromNullableInputString(?string $inputString): ?\DateTimeImmutable
@@ -15,6 +17,12 @@ class DateTimeFactory
 
     public static function fromInputString(string $inputString): \DateTimeImmutable
     {
-        return \DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $inputString);
+        $date = \DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $inputString);
+
+        if ($date === false) {
+            throw new ResponseDecodingException(sprintf('Error creating date from string "%s"', $inputString));
+        }
+
+        return $date;
     }
 }

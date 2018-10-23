@@ -22,7 +22,7 @@ class EventPreviewTest extends TestCase
 
         $this->assertSame('Rukodělná dílna', $event->getTitle());
         $this->assertEquals(Uuid::fromString('7743166a-3f07-11e8-9fb0-01155dfe3280'), $event->getUuid());
-        $this->assertSame('7743166a-3f07-11e8-9fb0-01155dfe3280', (string) $event->getUuid());
+        $this->assertSame('7743166a-3f07-11e8-9fb0-01155dfe3280', $event->getUuid()->toString());
         $this->assertSame('hdAFJnmQ9zeJP5aR8gKWEP', $event->getShortUuid());
         $this->assertSame('<p>Činností <strong>zamířily</strong> i v zájmu infocentra.</p>', $event->getDescription());
         $this->assertEquals(EventCategory::AKCE(), $event->getCategory());
@@ -59,5 +59,15 @@ class EventPreviewTest extends TestCase
 
         $this->assertCount(2, $articles);
         $this->assertContainsOnlyInstancesOf(EventPreview::class, $articles);
+    }
+
+    /** @test */
+    public function shouldHandleUnknownCategory(): void
+    {
+        $responseData = json_decode(file_get_contents(__DIR__ . '/Fixtures/event-preview-unknown-category.json'));
+
+        $event = EventPreview::createFromResponseData($responseData);
+
+        $this->assertNull($event->getCategory());
     }
 }
