@@ -13,6 +13,8 @@ class ArticlesRequestBuilder extends AbstractRequestBuilder
     protected $page;
     /** @var int */
     protected $categoryId;
+    /** @var bool */
+    protected $onlyRegional = false;
 
     public function setPage(?int $page): self
     {
@@ -24,6 +26,13 @@ class ArticlesRequestBuilder extends AbstractRequestBuilder
     public function setCategory(int $categoryId): self
     {
         $this->categoryId = $categoryId;
+
+        return $this;
+    }
+
+    public function onlyRegional(bool $onlyRegional = true): self
+    {
+        $this->onlyRegional = $onlyRegional;
 
         return $this;
     }
@@ -43,6 +52,10 @@ class ArticlesRequestBuilder extends AbstractRequestBuilder
 
         if ($this->categoryId !== null) {
             $params['kategorie'] = $this->categoryId;
+        }
+
+        if ($this->onlyRegional === true) {
+            $params['krajske'] = '1';
         }
 
         return $params;

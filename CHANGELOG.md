@@ -3,6 +3,7 @@
 <!-- We follow Semantic Versioning (http://semver.org/) and Keep a Changelog principles (http://keepachangelog.com/) --> 
 
 ## Zatím nevydáno
+- Přidána možnost filtrovat při načtení seznamu článků pouze krajské články (pomocí metody `onlyRegional()`).
 
 ## 0.0.2 - 2018-10-23
 - Jméno kategorie článku je dostupné prostřednictvím metody `getCategory()`, ID kategorie článku prostřednictvím `getCategoryId()`.

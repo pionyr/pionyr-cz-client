@@ -65,6 +65,7 @@ $response = $pionyrCz->request()
     ->articles()
     ->setPage(3) // volitelné, není-li nastaveno, načte se první strana výpisu
     ->setCategory(9) // volitelné filtrování dle kategorie, není-li nastaveno, načtou se články ve všech kategoriích
+    ->onlyRegional() // volitelné filtrování pouze krajských článků, není-li nastaveno, zobrazují se i "celostátání" články
     ->send();
 
 echo $response->getPageCount(); // vypíše celkový počet stránek které daný seznam obsahuje
