@@ -4,6 +4,7 @@
 
 ## Zatím nevydáno
 - Přidána možnost filtrovat při načtení seznamu článků pouze krajské články (pomocí metody `onlyRegional()`).
+- Přidána možnost filtrovat při načtení seznamu akcí pouze akce, které organizuje daná jednotka (např. kraj) a její podjednotky (skupiny, oddíly) (pomocí metody `onlyByUnitAndSubunits()`).
 
 ## 0.0.2 - 2018-10-23
 - Jméno kategorie článku je dostupné prostřednictvím metody `getCategory()`, ID kategorie článku prostřednictvím `getCategoryId()`.

@@ -14,6 +14,8 @@ class EventsRequestBuilder extends AbstractRequestBuilder
     protected $page;
     /** @var EventCategory|null */
     protected $category;
+    /** @var bool */
+    protected $onlyByUnitAndSubunits = false;
     /** @var \DateTimeInterface|null */
     protected $dateFrom;
     /** @var \DateTimeInterface|null */
@@ -29,6 +31,16 @@ class EventsRequestBuilder extends AbstractRequestBuilder
     public function setCategory(?EventCategory $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Only list events organized by current unit (whose token is used to access the data) or by its subunits.
+     */
+    public function onlyByUnitAndSubunits(bool $onlyByUnitAndSubunits = true): self
+    {
+        $this->onlyByUnitAndSubunits = $onlyByUnitAndSubunits;
 
         return $this;
     }
@@ -62,6 +74,10 @@ class EventsRequestBuilder extends AbstractRequestBuilder
 
         if ($this->category !== null) {
             $params['kategorie'] = $this->category->getValue();
+        }
+
+        if ($this->onlyByUnitAndSubunits === true) {
+            $params['krajske'] = '1';
         }
 
         if ($this->dateFrom !== null) {

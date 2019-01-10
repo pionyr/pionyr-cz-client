@@ -151,6 +151,7 @@ $response = $pionyrCz->request()
     ->events()
     ->setPage(3) // volitelné, není-li nastaveno, načte se první strana výpisu
     ->setCategory(EventCategory::TABOR()) // volitelné filtrování dle kategorie, není-li nastaveno, načtou se akce ve všech kategoriích
+    ->onlyByUnitAndSubunits() // volitelné filtrování - je-li zapnuto, načtou se pouze akce, které organizuje aktuální jednotka které patří token (např. kraj) a její podjednotky (např. pionýrské skupiny a oddíly)
     ->setDateFrom(new \DateTime('2018-01-01')) // volitelné filtrování dle data - je-li nastaveno, načtou se pouze akce konající se po tomto datu, jinak se načtou akce konající se ode dnešního dne
     ->setDateTo(new \DateTime('2018-08-31')) // volitelné filtrování dle data - je-li nastaveno, načtou se pouze akce konající se před tímto datem
     ->send();

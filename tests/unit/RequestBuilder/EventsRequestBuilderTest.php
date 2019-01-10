@@ -51,6 +51,7 @@ class EventsRequestBuilderTest extends TestCase
                 [
                     'stranka' => 333,
                     'kategorie' => EventCategory::TABOR,
+                    'krajske' => '1',
                     'datumOd' => '2018-09-01',
                     'datumDo' => '2018-12-31',
                 ]
@@ -63,6 +64,7 @@ class EventsRequestBuilderTest extends TestCase
 
         $builder->setPage(333)
             ->setCategory(EventCategory::TABOR())
+            ->onlyByUnitAndSubunits()
             ->setDateFrom(new \DateTime('2018-09-01'))
             ->setDateTo(new \DateTime('2018-12-31'))
             ->send();
