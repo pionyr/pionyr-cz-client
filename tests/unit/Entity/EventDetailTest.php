@@ -4,6 +4,7 @@ namespace Pionyr\PionyrCz\Entity;
 
 use PHPUnit\Framework\TestCase;
 use Pionyr\PionyrCz\Constants\EventCategory;
+use Pionyr\PionyrCz\Constants\EventLocalization;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -42,7 +43,7 @@ class EventDetailTest extends TestCase
         $this->assertNull($event->getPriceForMembersDiscounted());
         $this->assertNull($event->getPriceForPublic());
         $this->assertNull($event->getPriceForPublicDiscounted());
-        $this->assertFalse($event->isNationwide());
+        $this->assertNull($event->getLocalization());
         $this->assertNull($event->getDatePublishFrom());
         $this->assertNull($event->getDatePublishTo());
         $this->assertTrue($event->isShownInCalendar());
@@ -91,7 +92,8 @@ class EventDetailTest extends TestCase
         $this->assertSame('800 Kč', $event->getPriceForMembersDiscounted());
         $this->assertSame('2000 Kč', $event->getPriceForPublic());
         $this->assertSame('1500 Kč', $event->getPriceForPublicDiscounted());
-        $this->assertTrue($event->isNationwide());
+        $this->assertEquals(EventLocalization::NATIONWIDE(), $event->getLocalization());
+        $this->assertSame('Celorepubliková', (string) $event->getLocalization());
         $this->assertEquals(new \DateTimeImmutable('2018-01-22 00:00:00'), $event->getDatePublishFrom());
         $this->assertEquals(new \DateTimeImmutable('2018-09-01 00:00:00'), $event->getDatePublishTo());
         $this->assertTrue($event->isShownInCalendar());
