@@ -3,6 +3,7 @@
 namespace Pionyr\PionyrCz\Entity;
 
 use Pionyr\PionyrCz\Constants\EventCategory;
+use Pionyr\PionyrCz\Constants\EventLocalization;
 use Pionyr\PionyrCz\Helper\DateTimeFactory;
 
 class AbstractEvent
@@ -44,8 +45,8 @@ class AbstractEvent
     protected $datePublishFrom;
     /** @var \DateTimeImmutable|null */
     protected $datePublishTo;
-    /** @var bool */
-    protected $isNationwide;
+    /** @var EventLocalization|null */
+    protected $localization;
     /** @var bool */
     protected $isShownInCalendar;
     /** @var bool */
@@ -138,9 +139,9 @@ class AbstractEvent
         return $this->priceForPublicDiscounted;
     }
 
-    public function isNationwide(): bool
+    public function getLocalization(): ?EventLocalization
     {
-        return $this->isNationwide;
+        return $this->localization;
     }
 
     public function getDatePublishFrom(): ?\DateTimeImmutable
@@ -203,7 +204,7 @@ class AbstractEvent
         $object->priceForPublicDiscounted = $responseData->cenaZvyhodnenaVerejnost ?: null;
         $object->datePublishFrom = DateTimeFactory::fromNullableInputString($responseData->zverejnitOd);
         $object->datePublishTo = DateTimeFactory::fromNullableInputString($responseData->zverejnitDo);
-        $object->isNationwide = $responseData->lokalizace === static::LOCALIZATION_NATIONWIDE;
+        $object->setLocalizationFromString($responseData->lokalizace);
         $object->isShownInCalendar = $responseData->jeZobrazitVKalendariu;
         $object->isOpenEvent = $responseData->jeOtevrenaAkce;
         $object->openEventType = $responseData->typOtevreneAkce ?: null;
@@ -216,6 +217,15 @@ class AbstractEvent
     {
         if (EventCategory::isValid($categoryId)) {
             $this->category = new EventCategory($categoryId);
+        }
+    }
+
+    protected function setLocalizationFromString(?string $localization): void
+    {
+        if ($localization === 'Regionální') {
+            $this->localization = new EventLocalization(EventLocalization::REGIONAL);
+        } elseif ($localization === 'Celorepubliková') {
+            $this->localization = new EventLocalization(EventLocalization::NATIONWIDE);
         }
     }
 }

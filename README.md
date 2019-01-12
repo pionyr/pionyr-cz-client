@@ -64,7 +64,7 @@ use Pionyr\PionyrCz\Constants\ArticleCategory;
 $response = $pionyrCz->request()
     ->articles()
     ->setPage(3) // volitelné, není-li nastaveno, načte se první strana výpisu
-    ->setCategory(9) // volitelné filtrování dle kategorie, není-li nastaveno, načtou se články ve všech kategoriích
+    ->setCategory(ArticleCategory::UVODNI_NOVINKY) // volitelné filtrování dle ID kategorie, není-li nastaveno, načtou se články ve všech kategoriích
     ->onlyRegional() // volitelné filtrování pouze krajských článků, není-li nastaveno, zobrazují se i "celostátání" články
     ->send();
 
@@ -146,11 +146,14 @@ výchozí se načítají akce, mající datum začátku dnes nebo v budoucnu).
 
 ```php
 use Pionyr\PionyrCz\Constants\EventCategory;
+use Pionyr\PionyrCz\Constants\EventLocalization;
 
 $response = $pionyrCz->request()
     ->events()
     ->setPage(3) // volitelné, není-li nastaveno, načte se první strana výpisu
     ->setCategory(EventCategory::TABOR()) // volitelné filtrování dle kategorie, není-li nastaveno, načtou se akce ve všech kategoriích
+    ->onlyByUnitAndSubunits() // volitelné filtrování - je-li zapnuto, načtou se pouze akce, které organizuje aktuální jednotka které patří token (např. kraj) a její podjednotky (např. pionýrské skupiny a oddíly)
+    ->setLocalization(EventLocalization::NATIONWIDE()) // volitelné filtrování dle lokalizace akce - je-li zapnuto, načtou se pouze akce se zadanou lokalizací, a to buďto regionální nebo pouze celorepublikové
     ->setDateFrom(new \DateTime('2018-01-01')) // volitelné filtrování dle data - je-li nastaveno, načtou se pouze akce konající se po tomto datu, jinak se načtou akce konající se ode dnešního dne
     ->setDateTo(new \DateTime('2018-08-31')) // volitelné filtrování dle data - je-li nastaveno, načtou se pouze akce konající se před tímto datem
     ->send();
@@ -182,7 +185,7 @@ foreach ($response->getData() as $event) {
         ->format('j. n. Y');            // datum od kdy akci zveřejnit (může být null)
     echo $event->getDatePublishTo()
         ->format('j. n. Y');            // datum do kdy akci zveřejnit (může být null)
-    echo $event->isNationwide();        // jedná se o celorepublikovou akci?
+    echo $event->getLocalization();     // lokalizace akce (může být null)
     echo $event->isShownInCalendar();   // zobrazit v kalendáriu?
     echo $event->isOpenEvent();         // jedná se o otevřenou akci?
     echo $event->getOpenEventType();    // typ otevřené akce (může být null, pokud se nejedná o otevřenou akci)

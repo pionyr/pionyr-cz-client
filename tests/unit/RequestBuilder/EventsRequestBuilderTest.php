@@ -6,6 +6,7 @@ use Fig\Http\Message\RequestMethodInterface;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Pionyr\PionyrCz\Constants\EventCategory;
+use Pionyr\PionyrCz\Constants\EventLocalization;
 use Pionyr\PionyrCz\Entity\EventPreview;
 use Pionyr\PionyrCz\Http\RequestManager;
 use Pionyr\PionyrCz\Http\Response\EventsResponse;
@@ -51,8 +52,10 @@ class EventsRequestBuilderTest extends TestCase
                 [
                     'stranka' => 333,
                     'kategorie' => EventCategory::TABOR,
+                    'krajske' => '1',
                     'datumOd' => '2018-09-01',
                     'datumDo' => '2018-12-31',
+                    'lokalizace' => '2',
                 ]
             )
             ->willReturn(
@@ -63,6 +66,8 @@ class EventsRequestBuilderTest extends TestCase
 
         $builder->setPage(333)
             ->setCategory(EventCategory::TABOR())
+            ->setLocalization(EventLocalization::NATIONWIDE())
+            ->onlyByUnitAndSubunits()
             ->setDateFrom(new \DateTime('2018-09-01'))
             ->setDateTo(new \DateTime('2018-12-31'))
             ->send();
