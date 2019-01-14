@@ -10,4 +10,6 @@ services:
 parameters:
     skip:
         PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff.ClassConstantNotUpperCase:
-            -  'src/Constants/Region.php'
+            - 'src/Constants/Region.php'
+        PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff.Found:
+            - 'examples/*'
