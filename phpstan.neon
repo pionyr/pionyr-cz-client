@@ -1,7 +1,7 @@
 includes:
-	- vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
 parameters:
-	ignoreErrors:
-		- '#Cannot call method getUri\(\) on false|Psr\\Http\\Message\\RequestInterface#'
-		- '~Parameter #1 \$json of function json_decode expects string, string\|false given~'
-		- '~Parameter #3 \$body of class GuzzleHttp\\Psr7\\Response constructor expects Psr\\Http\\Message\\StreamInterface\|resource\|string\|null, string\|false given~'
+    ignoreErrors:
+        - '#Cannot call method getUri\(\) on false|Psr\\Http\\Message\\RequestInterface#'
+        - '~Parameter #1 \$json of function json_decode expects string, string\|false given~'
+        - '~Parameter #3 \$body of class GuzzleHttp\\Psr7\\Response constructor expects Psr\\Http\\Message\\StreamInterface\|resource\|string\|null, string\|false given~'
