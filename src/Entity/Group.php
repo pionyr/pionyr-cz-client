@@ -4,6 +4,8 @@ namespace Pionyr\PionyrCz\Entity;
 
 class Group extends AbstractUnit
 {
+    /** @var string */
+    protected $ico;
     /** @var Address */
     protected $addressOfficial;
     /** @var Address */
@@ -15,10 +17,16 @@ class Group extends AbstractUnit
 
         static::setCommonUnitResponseDataToObject($responseData, $object);
 
+        $object->setIco($responseData->ico);
         $object->setAddressOfficial($responseData->adresaSidla);
         $object->setAddressWhereToFindUs($responseData->adresaKdeNasNajdete);
 
         return $object;
+    }
+
+    public function getIco(): string
+    {
+        return $this->ico;
     }
 
     public function getAddressOfficial(): Address
@@ -42,6 +50,11 @@ class Group extends AbstractUnit
         }
 
         return $entities;
+    }
+
+    private function setIco(string $ico): void
+    {
+        $this->ico = $ico;
     }
 
     private function setAddressOfficial(\stdClass $address): void

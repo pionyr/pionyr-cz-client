@@ -1,5 +1,6 @@
 [
   {
+    "ico": "33057737",
     "adresaSidla": {
       "mesto": "Praha 8",
       "ulice": "U školské zahrady 333",
@@ -20,6 +21,7 @@
     "zemepisnaDelka": null
   },
   {
+    "ico": "",
     "adresaSidla": {
       "mesto": "",
       "ulice": "",
@@ -40,6 +42,7 @@
     "zemepisnaDelka": null
   },
   {
+    "ico": "66666666",
     "adresaSidla": {
       "mesto": "Praha 8",
       "ulice": "U školské zahrady 666",
