@@ -24,6 +24,8 @@ class GroupTest extends TestCase
         $this->assertSame('https://www.tritritri.trms', $group->getWebsiteUrl());
         $this->assertSame('333666333', $group->getPhone());
 
+        $this->assertSame('333333', $group->getIco());
+
         $this->assertSame('Praha 8', $group->getAddressOfficial()->getCity());
         $this->assertSame('U školské zahrady 430/9', $group->getAddressOfficial()->getStreet());
         $this->assertSame('182 00', $group->getAddressOfficial()->getPostcode());
