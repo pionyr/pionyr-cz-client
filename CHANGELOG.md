@@ -3,6 +3,8 @@
 <!-- We follow Semantic Versioning (http://semver.org/) and Keep a Changelog principles (http://keepachangelog.com/) --> 
 
 ## Zatím nevydáno
+
+## 1.0.0 - 2019-09-22
 - Přidána možnost filtrovat při načtení seznamu článků pouze krajské články (pomocí metody `onlyRegional()`).
 - Přidána možnost filtrovat při načtení seznamu akcí pouze akce, které organizuje daná jednotka (např. kraj) a její podjednotky (skupiny, oddíly) (pomocí metody `onlyByUnitAndSubunits()`).
 - V objektech akcí (`EventPreview` a `EventDetail`) nahrazena metoda `isNationwide()` metodou `getLocalization()`, která vrací instanci výčtového typu `EventLocalization`.
