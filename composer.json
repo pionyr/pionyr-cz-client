@@ -41,10 +41,10 @@
         "php-http/message": "^1.6",
         "php-http/mock-client": "^1.1",
         "php-mock/php-mock-phpunit": "^2.1",
-        "phpstan/phpstan-phpunit": "^0.11.2",
-        "phpstan/phpstan-shim": "^0.11.16",
-        "phpunit/phpunit": "^7.1",
-        "symfony/var-dumper": "^4.0"
+        "phpstan/phpstan-phpunit": "^0.12.0",
+        "phpstan/phpstan": "^0.12.16",
+        "phpunit/phpunit": "^7.1 || ^8.5.13",
+        "symfony/var-dumper": "^4.0 || ^5.0"
     },
     "scripts": {
         "all": [
@@ -53,7 +53,7 @@
         ],
         "analyze": [
             "vendor/bin/ecs check ./src/ ./tests/ ./examples/ --ansi",
-            "vendor/bin/phpstan.phar analyze ./src/ ./tests/ -c phpstan.neon --level 7 --ansi"
+            "vendor/bin/phpstan analyze -c phpstan.neon --ansi"
         ],
         "test": [
             "./vendor/bin/phpunit --colors=always"

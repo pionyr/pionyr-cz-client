@@ -4,5 +4,8 @@ namespace Pionyr\PionyrCz\Http\Response;
 
 interface ResponseInterface
 {
+    /**
+     * @return mixed
+     */
     public function getData();
 }

@@ -4,3 +4,14 @@ parameters:
     ignoreErrors:
         - '~Parameter #1 \$json of function json_decode expects string, string\|false given~'
         - '~Parameter #3 \$body of class GuzzleHttp\\Psr7\\Response constructor expects Psr\\Http\\Message\\StreamInterface\|resource\|string\|null, string\|false given~'
+        - '#Unsafe usage of new static\(\)#'
+        - message: '#expects class-string#'
+          path: tests/
+        - message: '#Unable to resolve the template type ExpectedType#'
+          path: tests/unit/RequestBuilder/RequestBuilderFactoryTest.php
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    level: max
+    paths:
+        - src/
+        - tests/

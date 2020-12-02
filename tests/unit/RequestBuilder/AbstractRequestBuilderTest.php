@@ -3,6 +3,7 @@
 namespace Pionyr\PionyrCz\RequestBuilder;
 
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Pionyr\PionyrCz\Exception\ResponseDecodingException;
 use Pionyr\PionyrCz\Http\RequestManager;
@@ -27,7 +28,10 @@ class AbstractRequestBuilderTest extends TestCase
         $builder->send();
     }
 
-    private function createRequestManagerMockToReturnFileContents(string $filePath)
+    /**
+     * @return MockObject&RequestManager
+     */
+    private function createRequestManagerMockToReturnFileContents(string $filePath): MockObject
     {
         $requestManagerMock = $this->createMock(RequestManager::class);
         $requestManagerMock->expects($this->once())

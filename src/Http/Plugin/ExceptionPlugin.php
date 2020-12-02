@@ -23,8 +23,10 @@ final class ExceptionPlugin implements Plugin
         });
     }
 
-    private function transformResponseToException(RequestInterface $request, ResponseInterface $response)
-    {
+    private function transformResponseToException(
+        RequestInterface $request,
+        ResponseInterface $response
+    ): ResponseInterface {
         $responseCode = $response->getStatusCode();
 
         if ($responseCode === StatusCodeInterface::STATUS_FORBIDDEN) { // Yes, they use 403 Forbidden instead of 401...
