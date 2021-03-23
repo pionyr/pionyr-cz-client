@@ -3,6 +3,8 @@
 <!-- We follow Semantic Versioning (http://semver.org/) and Keep a Changelog principles (http://keepachangelog.com/) --> 
 
 ## Zatím nevydáno
+
+## 1.1.0 - 2021-03-23
 - Minimální vyžadovaná verze PHP je 7.3.
 - Podpora PHP 8.0.
 
