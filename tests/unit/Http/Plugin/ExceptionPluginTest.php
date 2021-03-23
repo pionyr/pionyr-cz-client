@@ -7,6 +7,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Http\Client\Promise\HttpFulfilledPromise;
 use Http\Client\Promise\HttpRejectedPromise;
+use Http\Promise\Promise;
 use PHPUnit\Framework\TestCase;
 use Pionyr\PionyrCz\Exception\AuthorizationException;
 use Pionyr\PionyrCz\Exception\ClientErrorException;
@@ -37,7 +38,8 @@ class ExceptionPluginTest extends TestCase
         };
 
         $plugin = new ExceptionPlugin();
-        $promise = $plugin->handleRequest($request, $next, function (): void {
+        $promise = $plugin->handleRequest($request, $next, function (): Promise {
+            return $this->createMock(Promise::class);
         });
         $this->assertInstanceOf(HttpFulfilledPromise::class, $promise);
         $this->assertSame($response, $promise->wait());
@@ -72,7 +74,9 @@ class ExceptionPluginTest extends TestCase
 
         $plugin = new ExceptionPlugin();
 
-        $promise = $plugin->handleRequest($request, $next, function (): void {});
+        $promise = $plugin->handleRequest($request, $next, function (): Promise {
+            return $this->createMock(Promise::class);
+        });
         $this->assertInstanceOf(HttpRejectedPromise::class, $promise);
 
         $this->expectException($expectedExceptionClass);
