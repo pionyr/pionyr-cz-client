@@ -1,7 +1,7 @@
 {
     "name": "pionyr/pionyr-cz-client",
-    "description": "PHP API Client for API provided by Pionyr.cz",
     "type": "library",
+    "description": "PHP API Client for API provided by Pionyr.cz",
     "license": "MIT",
     "authors": [
         {
@@ -9,17 +9,6 @@
             "email": "ondrej.machulda@gmail.com"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "Pionyr\\PionyrCz\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Pionyr\\PionyrCz\\": "tests/unit/",
-            "Pionyr\\PionyrCz\\IntegrationTests\\": "tests/integration/"
-        }
-    },
     "require": {
         "php": "^7.1",
         "ext-json": "*",
@@ -35,16 +24,31 @@
         "ramsey/uuid": "^3.7"
     },
     "require-dev": {
+        "ergebnis/composer-normalize": "^2.13",
         "lmc/coding-standard": "^1.0",
         "php-coveralls/php-coveralls": "^2.0",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/message": "^1.6",
         "php-http/mock-client": "^1.1",
         "php-mock/php-mock-phpunit": "^2.1",
-        "phpstan/phpstan-phpunit": "^0.12.0",
         "phpstan/phpstan": "^0.12.16",
+        "phpstan/phpstan-phpunit": "^0.12.0",
         "phpunit/phpunit": "^7.1 || ^8.5.13",
         "symfony/var-dumper": "^4.0 || ^5.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Pionyr\\PionyrCz\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pionyr\\PionyrCz\\": "tests/unit/",
+            "Pionyr\\PionyrCz\\IntegrationTests\\": "tests/integration/"
+        }
     },
     "scripts": {
         "all": [
@@ -58,8 +62,5 @@
         "test": [
             "./vendor/bin/phpunit --colors=always"
         ]
-    },
-    "config": {
-        "sort-packages": true
     }
 }
