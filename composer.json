@@ -25,12 +25,13 @@
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.13",
-        "lmc/coding-standard": "^1.0",
+        "lmc/coding-standard": "^2.0",
         "php-coveralls/php-coveralls": "^2.0",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/message": "^1.6",
         "php-http/mock-client": "^1.1",
         "php-mock/php-mock-phpunit": "^2.1",
+        "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpstan/phpstan": "^0.12.16",
         "phpstan/phpstan-phpunit": "^0.12.0",
         "phpunit/phpunit": "^7.1 || ^8.5.13",
@@ -58,6 +59,15 @@
         "analyze": [
             "vendor/bin/ecs check ./src/ ./tests/ ./examples/ --ansi",
             "vendor/bin/phpstan analyze -c phpstan.neon --ansi"
+        ],
+        "fix": [
+            "@composer normalize",
+            "vendor/bin/ecs check ./src/ ./tests/ ./examples/ --ansi --fix"
+        ],
+        "lint": [
+            "vendor/bin/parallel-lint -j 10 -e php ./src ./tests ./examples/",
+            "@composer validate",
+            "@composer normalize --dry-run"
         ],
         "test": [
             "./vendor/bin/phpunit --colors=always"
