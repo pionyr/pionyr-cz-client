@@ -6,12 +6,12 @@ use Http\Client\Common\Plugin\AuthenticationPlugin;
 use Http\Client\Common\Plugin\HeaderSetPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClient;
-use Http\Client\HttpClient;
-use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 use Http\Message\Authentication\QueryParam;
 use Http\Message\MessageFactory;
 use Pionyr\PionyrCz\Http\Plugin\ExceptionPlugin;
+use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -25,7 +25,7 @@ class RequestManager
     private $baseUrl = 'https://pionyr.cz/api';
     /** @var string */
     protected $apiToken;
-    /** @var HttpClient */
+    /** @var ClientInterface */
     protected $httpClient;
     /** @var MessageFactory */
     protected $messageFactory;
@@ -51,7 +51,7 @@ class RequestManager
     }
 
     /** @codeCoverageIgnore */
-    public function setHttpClient(HttpClient $httpClient): void
+    public function setHttpClient(ClientInterface $httpClient): void
     {
         $this->httpClient = $httpClient;
     }
@@ -62,11 +62,11 @@ class RequestManager
         $this->messageFactory = $messageFactory;
     }
 
-    protected function getHttpClient(): HttpClient
+    protected function getHttpClient(): ClientInterface
     {
         if ($this->httpClient === null) {
             // @codeCoverageIgnoreStart
-            $this->httpClient = HttpClientDiscovery::find();
+            $this->httpClient = Psr18ClientDiscovery::find();
             // @codeCoverageIgnoreEnd
         }
 
@@ -82,7 +82,7 @@ class RequestManager
         return $this->messageFactory;
     }
 
-    protected function createConfiguredHttpClient(): HttpClient
+    protected function createConfiguredHttpClient(): ClientInterface
     {
         return new PluginClient(
             $this->getHttpClient(),

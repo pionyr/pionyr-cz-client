@@ -2,10 +2,10 @@
 
 namespace Pionyr\PionyrCz;
 
-use Http\Client\HttpClient;
 use Http\Message\MessageFactory;
 use Pionyr\PionyrCz\Http\RequestManager;
 use Pionyr\PionyrCz\RequestBuilder\RequestBuilderFactory;
+use Psr\Http\Client\ClientInterface;
 
 class PionyrCz
 {
@@ -34,7 +34,7 @@ class PionyrCz
     }
 
     /** @return $this */
-    public function setHttpClient(HttpClient $client): self
+    public function setHttpClient(ClientInterface $client): self
     {
         $this->getRequestManager()->setHttpClient($client);
 
