@@ -7,8 +7,6 @@ parameters:
         - '#Unsafe usage of new static\(\)#'
         - message: '#expects class-string#'
           path: tests/
-        - message: '#Unable to resolve the template type ExpectedType#'
-          path: tests/unit/RequestBuilder/RequestBuilderFactoryTest.php
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
     level: max

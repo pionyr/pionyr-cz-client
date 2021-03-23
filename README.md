@@ -3,7 +3,7 @@
 Pro využití například na webech krajských organizací poskytuje web pionyr.cz API, skrze které se dají načítat články,
 akce, termíny a seznamy jednotek (pionýrských skupin, oddílů, klubů).
 
-Tato knihovna poskytuje nástroje pro snadnou práci s tímto API. Knihovna vyžaduje PHP verze 7.1 a novější.
+Tato knihovna poskytuje nástroje pro snadnou práci s tímto API. Knihovna vyžaduje PHP verze 7.2 a novější.
 
 ## Instalace
 
