@@ -25,7 +25,10 @@ class EventPreviewTest extends TestCase
         $this->assertEquals(Uuid::fromString('7743166a-3f07-11e8-9fb0-01155dfe3280'), $event->getUuid());
         $this->assertSame('7743166a-3f07-11e8-9fb0-01155dfe3280', $event->getUuid()->toString());
         $this->assertSame('hdAFJnmQ9zeJP5aR8gKWEP', $event->getShortUuid());
-        $this->assertSame('<p>Činností <strong>zamířily</strong> i v zájmu infocentra.</p>', $event->getDescription());
+        $this->assertSame(
+            '<p>Činností <strong>zamířily</strong> i v zájmu infocentra.</p>',
+            $event->getDescription()
+        );
         $this->assertEquals(EventCategory::AKCE(), $event->getCategory());
         $this->assertSame('Akce', (string) $event->getCategory());
         $this->assertSame('http://photo.url/goo.jpg', $event->getPhotoUrl());

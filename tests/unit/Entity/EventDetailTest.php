@@ -108,8 +108,14 @@ class EventDetailTest extends TestCase
         $this->assertSame(25, $event->getExpectedNumberOfParticipants());
         $this->assertSame('každý se dopravuje na vlastní náklady', $event->getTransportation());
         $this->assertSame('v pokojích po 10 lidech na palandách', $event->getAccommodation());
-        $this->assertSame('zajištěna po celou dobu konání akce včetně pitného režimu i kávy', $event->getFood());
-        $this->assertSame('spacák, přezůvky, pohodlné oblečení, vlastní nářadí', $event->getRequiredEquipment());
+        $this->assertSame(
+            'zajištěna po celou dobu konání akce včetně pitného režimu i kávy',
+            $event->getFood()
+        );
+        $this->assertSame(
+            'spacák, přezůvky, pohodlné oblečení, vlastní nářadí',
+            $event->getRequiredEquipment()
+        );
 
         $photos = $event->getPhotos();
         $this->assertCount(3, $photos);
