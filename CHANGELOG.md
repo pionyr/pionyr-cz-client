@@ -4,6 +4,7 @@
 
 ## Zatím nevydáno
 - Minimální vyžadovaná verze PHP je 7.3.
+- Podpora PHP 8.0.
 
 ## 1.0.0 - 2019-09-22
 - Přidána možnost filtrovat při načtení seznamu článků pouze krajské články (pomocí metody `onlyRegional()`).
