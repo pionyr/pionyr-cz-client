@@ -13,10 +13,10 @@ jobs:
 
     strategy:
       matrix:
-        php-version: ['7.1', '7.2', '7.3', '7.4', '8.0']
+        php-version: ['7.2', '7.3', '7.4']
         dependencies: ['']
         include:
-          - { php-version: '7.1', dependencies: '--prefer-lowest' }
+          - { php-version: '7.2', dependencies: '--prefer-lowest' }
 
     name: PHP ${{ matrix.php-version }} ${{ matrix.dependencies }} (unit tests)
 
@@ -30,7 +30,7 @@ jobs:
           coverage: xdebug
 
       - name: Install dependencies
-        run: composer update --no-interaction --no-progress --no-suggest ${{ matrix.dependencies }}
+        run: composer update --no-interaction --no-progress ${{ matrix.dependencies }}
 
       - name: Run tests
         run: |
