@@ -1,5 +1,9 @@
 # PHP API klient pro Pionyr.cz
 
+[![Latest Stable Version](https://img.shields.io/packagist/v/pionyr/pionyr-cz-client.svg?style=flat-square)](https://packagist.org/packages/pionyr/pionyr-cz-client)
+[![Coverage Status](https://img.shields.io/coveralls/pionyr/pionyr-cz-client/main.svg?style=flat-square)](https://coveralls.io/r/pionyr/pionyr-cz-client)
+[![GitHub Actions Build Status](https://img.shields.io/github/workflow/status/pionyr/pionyr-cz-client/Tests%20and%20linting?style=flat-square&label=GitHub%20Actions%20build)](https://github.com/pionyr/pionyr-cz-client/actions)
+
 Pro využití například na webech krajských organizací poskytuje web pionyr.cz API, skrze které se dají načítat články,
 akce, termíny a seznamy jednotek (pionýrských skupin, oddílů, klubů).
 
