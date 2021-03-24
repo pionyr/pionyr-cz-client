@@ -7,23 +7,24 @@
 Pro využití například na webech krajských organizací poskytuje web pionyr.cz API, skrze které se dají načítat články,
 akce, termíny a seznamy jednotek (pionýrských skupin, oddílů, klubů).
 
-Tato knihovna poskytuje nástroje pro snadnou práci s tímto API. Knihovna vyžaduje PHP verze 7.2 a novější.
+Tato knihovna poskytuje nástroje pro snadnou práci s tímto API. Knihovna vyžaduje PHP verze 7.3 a novější.
 
 ## Instalace
 
 Instalace knihovny se provede skrze [Composer](https://getcomposer.org/). Instalaci je možno spustit tímto příkazem:
 
 ```sh
-$ composer require pionyr/pionyr-cz-client php-http/guzzle6-adapter
+$ composer require pionyr/pionyr-cz-client guzzlehttp/guzzle
 ```
 
-Čímž se nainstaluje API klient, který bude používat jako transportní HTTP knihovnu Guzzle 6.
+Čímž se nainstaluje API klient, který bude používat jako transportní HTTP knihovnu Guzzle 7.
 
-Knihovna používá abstrakci skrze [HTTPlug](https://github.com/php-http/httplug), takže není svázána s konkrétní
-HTTP knihovnou, a je možné dle potřeby použít i jinou HTTP knihovnu - viz
-[seznam podporovaných HTTP knihoven](http://docs.php-http.org/en/latest/clients.html).
+Knihovna používá pro HTTP abstrakci za využití specifikací PSR-7, PSR-17 a PSR-18. Není tak svázána s konkrétní
+HTTP knihovnou. Díky tomu je dle potřeby možné použít i jinou HTTP knihovnu (např. takovou, kterou již využívá PHP framework,
+ve kterém máme aplikaci, např. `symfony/http-client`).
+Viz [seznam podporovaných HTTP knihoven](https://packagist.org/providers/psr/http-client-implementation).
 
-Pokud bychom chtěli použít jako transportní knihovnu místo Guzzle 6 například cURL, nainstalujeme API klienta tímto příkazem:
+Pokud bychom chtěli použít jako transportní knihovnu místo Guzzle 7 například cURL, nainstalujeme API klienta tímto příkazem:
 
 ```sh
 $ composer require pionyr/pionyr-cz-client php-http/curl-client guzzlehttp/psr7
@@ -34,8 +35,8 @@ $ composer require pionyr/pionyr-cz-client php-http/curl-client guzzlehttp/psr7
 Pro použití potřebujeme znát *API token*, který přidělí Ústředí Pionýra. Tokenem je zároveň identifikován uživatel
 a je tím stanoven i rozsah přístupů (např. tokenem vystaveným pro jeden kraj nemůžeme přistupovat k seznamu akcí jiného kraje apod.).
 
-Token se také váže na doménu (instanci) API - v případě použití testovací instance API je třeba použít i token vystavený právě pro
-tuto instanci (token pro "produkční" instanci zde nebude fungovat).
+Token se také váže na doménu (instanci) API - v případě použití testovací instance API je třeba rovněž použít token,
+vystavený právě pro tuto instanci (token pro "produkční" instanci zde nebude fungovat).
 
 Na začátku práce s API je třeba nejprve vytvořit instanci objektu `PionyrCz` a předat mu API token:
 
@@ -53,6 +54,10 @@ $pionyrCz->setBaseUrl('http://staging.pionyr.cz/api/');
 ```
 
 V dalších ukázkách se pracuje s tímto objektem `$pionyrCz`.
+
+### Cache
+
+Odpovědi z API je vhodné cachovat.
 
 ### Články
 
@@ -301,9 +306,10 @@ Strom výjimek:
 | └ ServerErrorException                            | Chyba při odpovědi serveru - výpadek služby apod.             |
 | └ ResponseDecodingException                       | Odpověd obsahuje chybná data                                  |
 
-V případě použití vlastního HTTP klienta (tedy pokud voláme `$pionyrCz->setHttpClient()`) je třeba zajistit, aby byl nastaven tak,
-že v případě HTTP chyb (400 a 500) nevyhazuje sám výjimky. Například při použití Guzzle 6 klienta to znamená že nastavení
-[`http_errors`](http://docs.guzzlephp.org/en/stable/request-options.html#http-errors) musí být `false`.
+V případě použití vlastní instance HTTP klienta (tedy pokud voláme `$pionyrCz->setHttpClient()`) je třeba zajistit,
+aby byl nastaven tak, že v případě HTTP chyb (400 a 500) nevyhazuje sám výjimky. Například při použití Guzzle 6 klienta
+to znamená že nastavení [`http_errors`](http://docs.guzzlephp.org/en/stable/request-options.html#http-errors)
+musí být `false`.
 
 ## Changelog - seznam změn
 Pro seznam změn viz soubor [CHANGELOG.md](CHANGELOG.md). Dodržujeme [sémantické verzování](http://semver.org/).
