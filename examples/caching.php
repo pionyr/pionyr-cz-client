@@ -12,8 +12,8 @@
  */
 use Http\Client\Common\Plugin\CachePlugin;
 use Http\Client\Common\PluginClient;
-use Http\Discovery\HttpClientDiscovery;
-use Http\Discovery\StreamFactoryDiscovery;
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 use Pionyr\PionyrCz\PionyrCz;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
@@ -23,7 +23,7 @@ $pionyrCz = new PionyrCz('...');
 
 $cachePlugin = new CachePlugin(
     new FilesystemAdapter('', 0, __DIR__ . '/cache/'), // cache bude ukládána do složky cache/
-    StreamFactoryDiscovery::find(),
+    Psr17FactoryDiscovery::findStreamFactory(),
     [
         'respect_response_cache_directives' => [], // pro ignorování no-cache hlaviček v odpovědích API
         'default_ttl' => null, // pro ignorování nesprávných údajů v hlavičkách odpovědí API
@@ -31,7 +31,7 @@ $cachePlugin = new CachePlugin(
     ]
 );
 
-$httpClient = new PluginClient(HttpClientDiscovery::find(), [$cachePlugin]);
+$httpClient = new PluginClient(Psr18ClientDiscovery::find(), [$cachePlugin]);
 $pionyrCz->setHttpClient($httpClient);
 
 // Všechny request provedené přes $pionyrCz budou nyní používat cache s platností 1 hodina

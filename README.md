@@ -55,9 +55,10 @@ $pionyrCz->setBaseUrl('http://staging.pionyr.cz/api/');
 
 V dalších ukázkách se pracuje s tímto objektem `$pionyrCz`.
 
-### Cache
+#### Cachování odpovědí
 
-Odpovědi z API je vhodné cachovat.
+Odpovědi z API je vhodné cachovat. Ukázku nastavení cachování pomocí PSR-6 je možné najít v souboru
+[examples/caching.php](examples/caching.php).
 
 ### Články
 
