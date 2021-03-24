@@ -5,9 +5,9 @@ namespace Pionyr\PionyrCz\Http\Plugin;
 use Fig\Http\Message\StatusCodeInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Http\Client\Promise\HttpFulfilledPromise;
-use Http\Client\Promise\HttpRejectedPromise;
+use Http\Promise\FulfilledPromise;
 use Http\Promise\Promise;
+use Http\Promise\RejectedPromise;
 use PHPUnit\Framework\TestCase;
 use Pionyr\PionyrCz\Exception\AuthorizationException;
 use Pionyr\PionyrCz\Exception\ClientErrorException;
@@ -34,14 +34,14 @@ class ExceptionPluginTest extends TestCase
         $next = function (RequestInterface $receivedRequest) use ($request, $response) {
             $this->assertSame($request, $receivedRequest);
 
-            return new HttpFulfilledPromise($response);
+            return new FulfilledPromise($response);
         };
 
         $plugin = new ExceptionPlugin();
         $promise = $plugin->handleRequest($request, $next, function (): Promise {
             return $this->createMock(Promise::class);
         });
-        $this->assertInstanceOf(HttpFulfilledPromise::class, $promise);
+        $this->assertInstanceOf(FulfilledPromise::class, $promise);
         $this->assertSame($response, $promise->wait());
     }
 
@@ -69,7 +69,7 @@ class ExceptionPluginTest extends TestCase
         $next = function (RequestInterface $receivedRequest) use ($request, $response) {
             $this->assertSame($request, $receivedRequest);
 
-            return new HttpFulfilledPromise($response);
+            return new FulfilledPromise($response);
         };
 
         $plugin = new ExceptionPlugin();
@@ -77,7 +77,7 @@ class ExceptionPluginTest extends TestCase
         $promise = $plugin->handleRequest($request, $next, function (): Promise {
             return $this->createMock(Promise::class);
         });
-        $this->assertInstanceOf(HttpRejectedPromise::class, $promise);
+        $this->assertInstanceOf(RejectedPromise::class, $promise);
 
         $this->expectException($expectedExceptionClass);
         $promise->wait();

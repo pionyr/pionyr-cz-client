@@ -19,7 +19,6 @@
         "pascaldevink/shortuuid": "^3.0",
         "php-http/client-common": "^2.3",
         "php-http/discovery": "^1.13",
-        "php-http/httplug": "^2.2",
         "php-http/message": "^1.11",
         "php-http/promise": "^1.1",
         "psr/http-client": "^1.0",
