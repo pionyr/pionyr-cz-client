@@ -6,12 +6,12 @@ use Http\Client\Common\Plugin\AuthenticationPlugin;
 use Http\Client\Common\Plugin\HeaderSetPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClient;
-use Http\Discovery\MessageFactoryDiscovery;
+use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Http\Message\Authentication\QueryParam;
-use Http\Message\MessageFactory;
 use Pionyr\PionyrCz\Http\Plugin\ExceptionPlugin;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -27,8 +27,8 @@ class RequestManager
     protected $apiToken;
     /** @var ClientInterface */
     protected $httpClient;
-    /** @var MessageFactory */
-    protected $messageFactory;
+    /** @var RequestFactoryInterface */
+    protected $requestFactory;
 
     public function __construct(string $apiToken)
     {
@@ -57,9 +57,9 @@ class RequestManager
     }
 
     /** @codeCoverageIgnore */
-    public function setMessageFactory(MessageFactory $messageFactory): void
+    public function setRequestFactory(RequestFactoryInterface $requestFactory): void
     {
-        $this->messageFactory = $messageFactory;
+        $this->requestFactory = $requestFactory;
     }
 
     protected function getHttpClient(): ClientInterface
@@ -73,13 +73,13 @@ class RequestManager
         return $this->httpClient;
     }
 
-    protected function getMessageFactory(): MessageFactory
+    protected function getRequestFactory(): RequestFactoryInterface
     {
-        if ($this->messageFactory === null) {
-            $this->messageFactory = MessageFactoryDiscovery::find();
+        if ($this->requestFactory === null) {
+            $this->requestFactory = Psr17FactoryDiscovery::findRequestFactory();
         }
 
-        return $this->messageFactory;
+        return $this->requestFactory;
     }
 
     protected function createConfiguredHttpClient(): ClientInterface
@@ -104,7 +104,7 @@ class RequestManager
             $uri .= '?' . $queryString;
         }
 
-        return $this->getMessageFactory()
+        return $this->getRequestFactory()
             ->createRequest($method, $uri);
     }
 

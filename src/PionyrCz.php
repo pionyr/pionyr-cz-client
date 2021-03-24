@@ -2,10 +2,10 @@
 
 namespace Pionyr\PionyrCz;
 
-use Http\Message\MessageFactory;
 use Pionyr\PionyrCz\Http\RequestManager;
 use Pionyr\PionyrCz\RequestBuilder\RequestBuilderFactory;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 
 class PionyrCz
 {
@@ -45,9 +45,9 @@ class PionyrCz
      * @codeCoverageIgnore
      * @return $this
      */
-    public function setHttpMessageFactory(MessageFactory $messageFactory): self
+    public function setHttpRequestFactory(RequestFactoryInterface $requestFactory): self
     {
-        $this->getRequestManager()->setMessageFactory($messageFactory);
+        $this->getRequestManager()->setRequestFactory($requestFactory);
 
         return $this;
     }
