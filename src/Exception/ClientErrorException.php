@@ -2,8 +2,6 @@
 
 namespace Pionyr\PionyrCz\Exception;
 
-use Http\Client\Exception\HttpException;
-
-class ClientErrorException extends HttpException implements PionyrCzExceptionInterface
+class ClientErrorException extends HttpException
 {
 }

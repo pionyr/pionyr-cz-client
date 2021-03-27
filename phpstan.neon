@@ -13,3 +13,4 @@ parameters:
     paths:
         - src/
         - tests/
+        - examples/

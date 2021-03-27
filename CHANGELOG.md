@@ -3,6 +3,7 @@
 <!-- We follow Semantic Versioning (http://semver.org/) and Keep a Changelog principles (http://keepachangelog.com/) --> 
 
 ## Zatím nevydáno
+- BC: Vyžadováno `psr/http-factory-implementation` (PSR-17) a `psr/http-client-implementation` (PSR-18).
 
 ## 1.1.0 - 2021-03-23
 - Minimální vyžadovaná verze PHP je 7.3.
