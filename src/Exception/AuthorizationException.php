@@ -14,7 +14,7 @@ class AuthorizationException extends ClientErrorException
     public static function fromRequestAndResponse(
         RequestInterface $request,
         ResponseInterface $response,
-        \Throwable $previous = null
+        ?\Throwable $previous = null
     ): self {
         $responseData = json_decode($response->getBody()->getContents());
 
