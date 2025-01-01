@@ -1,8 +1,8 @@
 {
     "name": "pionyr/pionyr-cz-client",
-    "type": "library",
     "description": "PHP API Client for API provided by Pionyr.cz",
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Ondřej Machulda",
@@ -45,9 +45,6 @@
         "symfony/cache": "^5.2",
         "symfony/var-dumper": "^5.2"
     },
-    "config": {
-        "sort-packages": true
-    },
     "autoload": {
         "psr-4": {
             "Pionyr\\PionyrCz\\": "src/"
@@ -58,6 +55,14 @@
             "Pionyr\\PionyrCz\\": "tests/unit/",
             "Pionyr\\PionyrCz\\IntegrationTests\\": "tests/integration/"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true,
+            "php-http/discovery": true
+        },
+        "sort-packages": true
     },
     "scripts": {
         "all": [
