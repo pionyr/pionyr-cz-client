@@ -16,7 +16,7 @@ class HttpException extends \RuntimeException implements PionyrCzExceptionInterf
         string $message,
         RequestInterface $request,
         ResponseInterface $response,
-        \Throwable $previous = null
+        ?\Throwable $previous = null
     ) {
         parent::__construct($message, 0, $previous);
 
