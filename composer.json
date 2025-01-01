@@ -16,7 +16,7 @@
         "beberlei/assert": "^3.0",
         "fig/http-message-util": "^1.1",
         "myclabs/php-enum": "^1.6",
-        "pascaldevink/shortuuid": "^3.0",
+        "pascaldevink/shortuuid": "^3.0 || ^4.0",
         "php-http/client-common": "^2.3",
         "php-http/discovery": "^1.13",
         "php-http/message": "^1.11",
